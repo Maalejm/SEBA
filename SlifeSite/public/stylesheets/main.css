@@ -1,0 +1,15 @@
+#header{
+	
+	height: 80px;
+	background-color: lightblue;
+}
+
+#content{
+	
+	height: 500px;
+}
+
+#footer{
+		background-color: lightblue;
+	height: 30px;
+}

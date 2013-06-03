@@ -1,0 +1,98 @@
+#{extends 'mainLayout.html' /}
+#{set title:'My Ads List' /}
+
+<h1>Search Ads</h1>
+
+<p>
+    <input type="text" id="search" size="30">
+    <input type="submit" id="submit" value="Find Ads">
+
+    <br>
+
+    Maximum results: 
+    <select id="size">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+    </select>
+</p>
+
+<div id="result">
+</div>
+
+<script type="text/javascript" charset="${_response_encoding}">
+
+    // Rebuild state
+    $('#search').val(sessvars.search)    
+    if(sessvars.page == undefined) {
+        sessvars.page = 1
+    }
+    if(sessvars.size == undefined) {
+        sessvars.size = 10
+    }
+    $('#size option[value='+sessvars.size+']').attr('selected', 'true')
+    
+    // Search function
+    var search = function() {
+    	
+        sessvars.search = $('#search').val()
+        sessvars.size = $('#size').val()
+        var listAction = #{jsAction @list(':search', ':size', ':page') /} 
+        $('#result').load(listAction({search: sessvars.search, size: sessvars.size, page: sessvars.page}), function() {
+            $('#content').css('visibility', 'visible');
+           
+        })
+    }
+    
+    // Events handler
+    $('#submit').click(function() {
+        sessvars.page = 1
+        search()
+    })
+    $('#search').keyup(function() {
+        sessvars.page = 1
+        search()
+    })
+    $('#nextPage').live('click', function(e) {
+        sessvars.page = $(this).attr('href')
+        e.preventDefault()
+        search()        
+    })
+    
+    // Init
+    if(sessvars.search != undefined) {
+        $('#content').css('visibility', 'hidden')
+        search()
+    }
+   
+</script>
+
+<h1>Current Ads </h1>
+
+#{ifnot ads}
+    <p>
+        No Ads Found
+    </p>
+#{/ifnot}
+#{else}
+   <table>
+       <thead>
+           <tr>
+               <th>Headline</th>
+               <th>Description</th>
+               <th>Student ID</th>
+               <th>Category</th>
+           </tr>
+       </thead>
+       <tbody>
+           #{list ads, as:'ad'}
+               <tr>
+                   <td>${ad.headline}</td>
+                   <td>${ad.description}</td>
+                   <td>${ad.studentid}</td>
+                   <td>${ad.category}</td>
+               </tr>
+           #{/list}
+       </tbody>
+   </table> 
+#{/else}
