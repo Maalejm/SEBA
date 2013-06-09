@@ -1,16 +1,21 @@
+
 package models;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+
 import javax.persistence.*;
 
 import java.awt.image.BufferedImage;
 import java.math.*;
 
 @Entity
-public class Ad extends Model {
+public class RentOffer extends Model {
 
 
+	@Required
+    public int studentid;
+    
 	@Required
     public int category;
     
@@ -24,12 +29,23 @@ public class Ad extends Model {
     public Blob image;
     
     @Required
-    public int studentid;
+    public float pricePerNight;
     
     @Required
     @MaxSize(20)
-    public String createDate;
+    public String startDate;
     
+    @Required
+    @MaxSize(20)
+    public String endDate;
+    
+    
+    public int isRented;
+    public int IsRentedBy;
+    
+    
+    
+  
    
     
 }
