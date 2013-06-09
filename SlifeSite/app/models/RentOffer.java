@@ -14,10 +14,12 @@ public class RentOffer extends Model {
 
 
 	@Required
-    public int studentid;
+	@ManyToOne
+    public Student student;
     
 	@Required
-    public int category;
+	@ManyToOne
+    public Category category;
     
     @Required
     @MaxSize(250)
@@ -41,7 +43,8 @@ public class RentOffer extends Model {
     
     
     public int isRented;
-    public int IsRentedBy;
+    @ManyToOne
+    public Student IsRentedBy;
     
     
     

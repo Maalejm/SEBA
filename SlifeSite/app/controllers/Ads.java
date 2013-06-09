@@ -11,12 +11,12 @@ import models.*;
 public class Ads  extends Application {
 
 	 public static void index() {
-	        List<Ads> ads = Ad.all().fetch();
+	        List<Ad> ads = Ad.all().fetch();
 	        render(ads);
 	    }
 
 	 public static void list(String search, Integer size, Integer page) {
-	        List<Ads> ads = null;
+	        List<Ad> ads = null;
 	        page = page != null ? page : 1;
 	        if(search.trim().length() == 0) {
 	            ads = Ad.all().fetch(page, size);

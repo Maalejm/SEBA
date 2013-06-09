@@ -1,18 +1,21 @@
+
+
 package models;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+
 import javax.persistence.*;
 
 import java.awt.image.BufferedImage;
 import java.math.*;
 
 @Entity
-public class Ad extends Model {
+public class SaleOffer extends Model {
 
 
 	@Required
-    @ManyToOne
+	@ManyToOne
     public Student student;
     
 	@Required
@@ -29,9 +32,15 @@ public class Ad extends Model {
     public Blob image;
     
     @Required
-    @MaxSize(20)
-    public String createDate;
+    public float price;
     
+    public int isSold;
+    @ManyToOne
+    public Student SoldBy;
+    
+    
+    
+  
    
     
 }

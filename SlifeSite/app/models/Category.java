@@ -13,12 +13,13 @@ public class Category extends Model {
 
 
 	@Required
-    public int catid;
+	@ManyToOne
+    public CategoryType categoryType;
     
 	@Required
     public String name;
 	
-	public int pubularity;
+    public int pubularity;
     
    
     

@@ -12,10 +12,12 @@ public class Answer extends Model {
 
 
 	@Required
-    public int studentid;
+	@ManyToOne
+    public Student student;
     
 	@Required
-    public int questionid;
+	@ManyToOne
+    public Question question;
     
 	@Required
     public String answer;
