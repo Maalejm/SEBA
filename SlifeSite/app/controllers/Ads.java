@@ -26,4 +26,13 @@ public class Ads  extends Application {
 	        }
 	        render(ads, search, size, page);
 	    }
+	 
+	 public static void getImage(long id) {
+  	   final Ad ad = Ad.findById(id);
+  	   notFoundIfNull(ad);
+  	   response.setContentTypeIfNotSet(ad.image.type());
+  	   renderBinary(ad.image.get());
+  	
+  	  
+  	}
 }

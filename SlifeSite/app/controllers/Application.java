@@ -10,7 +10,16 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        render();
+    	
+    	List<Ad> latestAds = Ad.find("order by createDate desc").fetch(4);
+    	List<Question> latestQuestions = Question.find("order by id desc").fetch(4);
+    	List<RentOffer> latestRooms = RentOffer.find("order by id desc").fetch(4);
+    	List<SaleOffer> latestOffers = SaleOffer.find("order by id desc").fetch(4);
+    	
+        render(latestAds,latestQuestions,latestRooms,latestOffers);
     }
+    
+    
+    
 
 }

@@ -3,9 +3,48 @@
 
 <table width="100%">
   <tr>
-   <td>list1</td>
-   <td>list1</td>
-   <td>list1</td>
-   <td>list1</td>
+   <td>
+     <table border="1">
+     <caption>ADS</caption>
+     	#{list latestAds, as:'ad'}
+               <tr>
+                   
+                   <td>${ad.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table border="1">
+     <caption>Question</caption>
+     #{list latestQuestions, as:'q'}
+               <tr>
+                   
+                   <td>${q.question}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table border="1">
+     <caption>Rooms</caption>
+       #{list latestRooms, as:'r'}
+               <tr>
+                   <td>${r.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   
+   </td>
+   <td>
+	<table border="1">
+     <caption>Trade</caption>
+     #{list latestOffers, as:'o'}
+               <tr>
+                   <td>${o.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
   </tr>
 </table>
