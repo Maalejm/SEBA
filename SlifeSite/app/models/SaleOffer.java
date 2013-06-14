@@ -29,7 +29,7 @@ public class SaleOffer extends Model {
     @Required
     public String description;
     
-    public Blob image;
+    public String image;
     
     @Required
     public float price;

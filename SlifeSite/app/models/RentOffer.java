@@ -28,7 +28,7 @@ public class RentOffer extends Model {
     @Required
     public String description;
     
-    public Blob image;
+    public String image;
     
     @Required
     public float pricePerNight;

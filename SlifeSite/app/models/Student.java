@@ -32,7 +32,7 @@ public class Student extends Model {
 	@Required
     public String email;
 	
-    public Blob image;
+    public String image;
    
 }
 

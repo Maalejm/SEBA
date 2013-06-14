@@ -26,7 +26,7 @@ public class Ad extends Model {
     @Required
     public String description;
     
-    public Blob image;
+    public String image;
     
     @Required
     @MaxSize(20)
