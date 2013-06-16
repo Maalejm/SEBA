@@ -19,7 +19,7 @@ public class Category extends Model {
 	@Required
     public String name;
 	
-    public int pubularity;
+ 
     
    
     

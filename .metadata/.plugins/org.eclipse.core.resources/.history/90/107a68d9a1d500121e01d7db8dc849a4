@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- Bootstrap -->
+        <link href="@{'/public/stylesheets/bootstrap.min.css'}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        
+        
+        
+        <link href="@{'/public/stylesheets/bootstrap-fileupload.min.css'}" rel="stylesheet" media="screen"> 
+        <link href="@{'/public/stylesheets/bootstrap-fileupload.min.css'}" rel="stylesheet" media="screen"> 
+        
+        <script src="http://code.jquery.com/jquery.js"></script>
+        
+        <script src="@{'/public/javascripts/bootstrap.min.js'}"></script>  
+        <script src="@{'/public/javascripts/bootstrap-fileupload.min.js'}"></script>
+        
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+       <script src="@{'/public/javascripts/sessvars.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+     <div>
+     	<div id="header"></div>
+     	<div id="content">#{doLayout /}</div>
+     	<div id="footer"></div>
+     </div>
+        
+    </body>
+</html>

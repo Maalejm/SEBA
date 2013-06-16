@@ -1,0 +1,33 @@
+#{if ads}
+    <table>
+        <thead>
+            <tr>
+               <th>Headline</th>
+               <th>Description</th>
+               <th>Student ID</th>
+               <th>Category</th>
+           </tr>
+        </thead>
+        <tbody>
+            #{list ads, as:'ad'}
+                <tr>
+                 
+                    <td>${ad.headline}</td>
+                   <td>${ad.description}</td>
+                   <td>${ad.student.firstName}</td>
+                   <td>${ad.category.name}</td>
+                                 
+                </tr>
+            #{/list}
+        </tbody>
+    </table>
+    <p>
+        <a id="nextPage" href="${page+1}">More results</a>
+    </p>
+#{/if}
+
+#{else}
+    <p>
+        No more results
+    </p>
+#{/else}      
