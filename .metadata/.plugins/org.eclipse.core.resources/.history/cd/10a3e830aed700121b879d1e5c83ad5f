@@ -1,0 +1,101 @@
+#{extends 'mainLayout.html' /}
+#{set title:'New Ads' /}
+
+ <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(cat.id==1) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    
+                    <div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a> <span class="divider">/</span></li>
+                        <li><a href="#">Ads</a> <span class="divider">/</span></li>
+                        <li class="active">Create New Ad</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        <button class="btn">List My Ads</button>
+                    </div>
+                    
+                                        
+                                        
+                    <form>
+                        <fieldset>
+                            <legend>Create New Ad</legend>
+                            <label>Category</label>
+                            <select class="span5">
+                                <option value="0">Select Category</option>
+                                <option value="1">Sport Events</option>
+                                <option value="2">Barbecue</option>
+                                <option value="3">University</option>
+                                <option value="4">Social Events</option>
+                            </select>
+
+                            <label>Head line</label>
+                             <input type="text" class="span5" placeholder="Descripe your ad">
+                            <div class="control-group error">
+                            <label>Address</label>
+                                 <div class="controls">
+                                <input type="text" class="span5" placeholder="Type an address here">
+                                <span class="help-inline">Please correct the error</span>
+                                </div>
+                            </div>
+                            <label>URL</label>
+                                <div class=" input-prepend">
+                                    <span class="add-on">http://</span>
+                                    <input type="text" class="input_text">
+                                        
+                                  </div>
+                            <label>image</label>
+                                 
+                                 
+                                 <div class="fileupload fileupload-new" data-provides="fileupload">
+  <div class="input-append">
+    <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div>
+                                        
+                            <label>Details</label>
+                                <textarea rows="6" class="input_textarea"></textarea>
+                                  <br/>
+                                 
+                            
+                           
+                                  <div class="form-actions">
+                                      <button type="submit" class="btn btn-primary">Save Ad</button>
+                                      <button type="button" class="btn">Cancel</button>
+                                  </div>
+                        </fieldset>
+                    </form>
+                    
+                    
+                                                            
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>
+

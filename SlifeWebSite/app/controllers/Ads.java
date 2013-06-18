@@ -1,40 +1,153 @@
 package controllers;
 
 import play.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.io.*;
+
+ 
+
 import play.mvc.*;
 import play.data.validation.*;
-
+import java.math.BigInteger;
 import java.util.*;
 
-import com.sun.tools.doclets.internal.toolkit.util.DocFinder.Output;
+
+import javax.persistence.EntityManager;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+
+
 
 import models.*;
 
 public class Ads  extends Application {
 
-	 public static void index() {
+	
+	
+	
+	public static int getFontSize(int count,int min, int max){
+		int fontsize=1;
+		
+		fontsize=10+(count-min)/((max-min)/30);
+		
+		return fontsize;
+	} 
+ 
+	
+	
+	public static void index(int success,String id) {
 	        List<Ad> ads = Ad.all().fetch();
-	        List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
+	        List<Category> cats = Category.find("categorytype_id=?1 order by id","1").fetch();
 	        
-	       
-	        int max = (Integer) Ad.find(
-	        		" select max(adCount) as maxPob from (select count(*) as adCount from ad group by category_id) as tb "
-	        	   ).fetch().get(0);
+	        EntityManager entityManager = play.db.jpa.JPA.em();
+	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by maxCount").getResultList();
+	        int min= bCounts.get(0).intValue();
+	        int max=bCounts.get(bCounts.size()-1).intValue();
+	        bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by category_id ").getResultList();
+	        List<String> fonts=new ArrayList<String>();
+	        for (int i=0;i<bCounts.size();i++) {
+	     	   BigInteger count= bCounts.get(i);
+	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   fonts.add(String.valueOf(x));
+	     	  
+	     	}
 	        
-	        
-	        int min = (Integer) Ad.find(
-	        		" select min(adCount) as maxPob from (select count(*) as adCount from ad group by category_id) as tb "
-	        	   ).fetch().get(0);
-	        
-	        render(ads,cats,max,min);
+	        render(ads,cats,fonts,min,max,success,id);
 	    }
-
+	 
+	 public static void newAd( ){
+		 
+		 List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
+		 EntityManager entityManager = play.db.jpa.JPA.em();
+	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by maxCount").getResultList();
+	        int min= bCounts.get(0).intValue();
+	        int max=bCounts.get(bCounts.size()-1).intValue();
+	        bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by category_id ").getResultList();
+	        List<String> fonts=new ArrayList<String>();
+	        for (int i=0;i<bCounts.size();i++) {
+	     	   BigInteger count= bCounts.get(i);
+	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   fonts.add(String.valueOf(x));
+	     	  
+	     	}
+	        
+		 render(fonts,min,max,cats);
+	 }
+	 
+	 public static void viewAd(String id){
+		
+		 Ad ad= Ad.findById(Long.parseLong(id));
+		 List<Category> cats = Category.find("categorytype_id=?1 order by id","1").fetch();
+		 
+		 EntityManager entityManager = play.db.jpa.JPA.em();
+	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by maxCount").getResultList();
+	        int min= bCounts.get(0).intValue();
+	        int max=bCounts.get(bCounts.size()-1).intValue();
+	        bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by category_id ").getResultList();
+	        List<String> fonts=new ArrayList<String>();
+	        for (int i=0;i<bCounts.size();i++) {
+	     	   BigInteger count= bCounts.get(i);
+	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   fonts.add(String.valueOf(x));
+	     	  
+	     	}
+			
+		 render(ad,fonts,min,max,cats);	
+	}
+	 
+	 
+	 public static void createAd(@Valid Ad ad,File photo) throws IOException{
+		 
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		   //get current date time with Date()
+		 Date date = new Date();
+		 ad.createDate=dateFormat.format(date);
+		 ad.student =  Student.findById(1l);
+		 //ad.category=Category.findById(ad.category.id);
+     	 File d= new File(Play.applicationPath.getAbsolutePath()+"/public/img/ads");
+			// if(d.exists()){
+     	String suffix = FilenameUtils.getExtension(photo.getName());
+	    File o=File.createTempFile("ad-", "."+suffix, d);
+			 
+			 InputStream input = new FileInputStream(photo);
+			 OutputStream output = new FileOutputStream(o);
+		ad.image=o.getName();	 
+			 
+			 ad.save();
+			 try {
+				    IOUtils.copy(input, output);
+				} finally {
+				    IOUtils.closeQuietly(output);
+				    IOUtils.closeQuietly(input);
+				}
+		
+	  
+	  Ads.index(1,ad.category.id.toString());
+	  
+		  
+	      
+	 }
 	 public static void list(String search, int category, Integer size, Integer page, int firstPage, int lastPage) {
 	        List<Ad> ads = null;
 	        
 	        List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
 	        
-	   
+	        EntityManager entityManager = play.db.jpa.JPA.em();
+	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by maxCount").getResultList();
+	        int min= bCounts.get(0).intValue();
+	        int max=bCounts.get(bCounts.size()-1).intValue();
+	        bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by category_id ").getResultList();
+	        List<String> fonts=new ArrayList<String>();
+	        for (int i=0;i<bCounts.size();i++) {
+	     	   BigInteger count= bCounts.get(i);
+	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   fonts.add(String.valueOf(x));
+	     	  
+	     	}
 	        
 	        int pagesCount=0;
 
@@ -93,8 +206,8 @@ public class Ads  extends Application {
 	        
 	        if(lastPage>pagesCount)
 	        	lastPage=pagesCount;
-	        
-	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats);
+	       
+	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats,fonts);
 	    }
 	 
 	 public static void getImage(long id) {

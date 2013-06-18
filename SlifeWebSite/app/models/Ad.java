@@ -26,6 +26,12 @@ public class Ad extends Model {
     @Required
     public String description;
     
+    @Required
+    public String address;
+    @Required
+    public String link;
+    
+    @Required
     public String image;
     
     @Required

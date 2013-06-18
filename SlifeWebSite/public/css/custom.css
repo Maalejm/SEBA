@@ -38,7 +38,7 @@
                 
                 }
                 
-                .img-custom{
+                .img-scustom{
                     width: 50px;
                     height: 38px
                 
@@ -53,3 +53,39 @@
                     width:100px;
                 }
                 
+                .error{
+                color: red;
+                }
+                
+                .input_textarea{
+                
+                    width: 400px;
+                
+                }
+                .input_text{
+                    
+                    width: 354px;
+
+                    
+                }
+                .img_upload{
+                
+                    width: 393px;
+                    text-align: left;
+                }
+                .success{
+                
+                color: green;
+                }
+                
+                .img-custom{
+               
+               width: 300px;
+			   height: 300px;
+			   float: left;
+				margin-right: 10px;
+               }
+               dd{
+               text-align: justify;
+               }
+                             

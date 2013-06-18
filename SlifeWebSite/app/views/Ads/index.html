@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-%{ out.print(max+"==="+min)}%
+
             <div class="row-fluid">
                 <div class="span2">
                     
@@ -14,21 +14,27 @@
                         
                         #{list cats, as:'cat'}
                          <li
-                         %{ if(cat.id==1) { }%
+                         %{ if(id.equals(cat.id.toString())) { }%
                           class="active"
                          %{ } }%
-                         ><a class="catNav" href="${cat.id}">${cat.name}</a></li>
+                         ><a class="catNav" href="/ads/${cat.id}">${cat.name}</a></li>
                         #{/list}
                         
                     </ul>
-                    
-                    <div>
-                      
-                      #{list cats, as:'cat'}
-                         <span><a class="catNav" href="${cat.id}">${cat.name}</a></span>
-                     #{/list}
+                    <br/>
+                    <br/>
+                    <br/>
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/ads/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
                         
-
+                   
+					<div>
+                      
+                    
                     </div>
                     <!--Sidebar content-->
                 </div>
@@ -43,9 +49,11 @@
                     </div>
                     
                     <div class="btn-group">
-                        <button class="btn">Create New Ad</button>
+                        <button class="btn"><a href="/ads/newAd">Create New Ad</a></button>
                     </div>
-                    
+                    %{ if (success==1) {  }%
+                    <div class="success"> Your add successfully created</div>
+                    %{}}%
                     <div class="span10 searchForm">
                         
                             <fieldset>
@@ -103,13 +111,14 @@
     
     // Search function
     var search = function() {
-    	
-
+    	if($('.active .catNav').attr('href') != undefined)
+    		$('#category').val($('.active .catNav').attr('href').split("/")[2])
         loadData($('#search').val(),$('#category').val(),10)
         
     }
     
     var loadData=function(search,category,size){
+    	
     	
     	sessvars.search = search
         sessvars.category = category
@@ -176,7 +185,10 @@
     
     $('.catNav').live('click', function(e) {
         
+    	category=$(this).attr('href').split("/")[2]
     	
+    	
+    	$('#category').val(category)
     	
     	sessvars.page =1
         sessvars.firstPage=1
@@ -186,7 +198,7 @@
         $(this).parent().addClass('active');
     	e.preventDefault()
     	
-       loadData("",$(this).attr('href'),10)       
+       loadData("",category,10)       
     })
     
     // Init

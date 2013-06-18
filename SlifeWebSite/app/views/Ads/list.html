@@ -9,10 +9,10 @@
            		#{list ads, as:'ad'}
                		<tr>
                         <td class="img-cell">
-                           <img src="public/img/${ad.image}"  class="img-polaroid img-custom">
+                           <img src="/public/img/ads/${ad.image}"  class="img-polaroid img-scustom">
                         </td>
                            <td>${ad.headline} </td>
-                           <td class="more_cell"><button class="btn ">More <i class="icon-circle-arrow-right"></i></button></td>
+                           <td class="more_cell"><a class="btn" href="/ads/viewAd/${ad.id}" >More <i class="icon-circle-arrow-right"></i></a></td>
                         </tr>
            		#{/list}
        

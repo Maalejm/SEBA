@@ -7,6 +7,10 @@ GET     /                                       Application.index
 
 GET     /ads                                       Ads.index
 GET     /ads/list                            Ads.list
+GET     /ads/newAd                                       Ads.newAd
+POST    /ads/createAd                                       Ads.createAd
+GET     /ads/{id}                                       Ads.index
+GET     /ads/viewAd/{id}                                       Ads.viewAd
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
