@@ -138,10 +138,10 @@ public class Casino {
 	// convenience methods.
 	// create new user also calles hook if there is one
 	// /////////////////////////////////////////////////////////////////////////
-	public static boolean createNewCasinoUser(String email,
+	public static boolean createNewCasinoUser( String firstName,String lastName, String email, String dateOfBirth, String address,
 			String passwordHash, String confirmationCode) {
 
-		boolean userCreated = CASINO_USER_MANAGER.createNewCasinoUser(email,
+		boolean userCreated = CASINO_USER_MANAGER.createNewCasinoUser(firstName, lastName, email,dateOfBirth, address,
 				passwordHash, confirmationCode);
 
 		// only exdc if user has been created...

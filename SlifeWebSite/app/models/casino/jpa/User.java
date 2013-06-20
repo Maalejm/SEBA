@@ -11,7 +11,15 @@ import play.db.jpa.Model;
 @Entity
 public class User extends Model {
 
+	public String firstName;
+	
+	public String lastName;
+	
 	public String email;
+	
+	public String dateOfBirth;
+	
+	public String address;
 
 	public String pwHash;
 
@@ -24,9 +32,13 @@ public class User extends Model {
 	private ArrayList<String> roles;
 	
 
-	public User(String email, String passwordHash, String confirmationCode) {
-
+	public User(String firstName, String lastName, String email,String dateOfBirth, String address, String passwordHash, String confirmationCode) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
 		this.pwHash = passwordHash;
 		this.confirmationCode = confirmationCode;
 

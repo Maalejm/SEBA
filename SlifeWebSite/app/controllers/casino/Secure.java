@@ -73,6 +73,7 @@ public class Secure extends Controller {
         Boolean allowed = false;
         try {
             // This is the deprecated method name
+        	//System.out.println(username +"" + +password);
             allowed = (Boolean)Security.invoke("authentify", username, password);
         } catch (UnsupportedOperationException e ) {
             // This is the official method name

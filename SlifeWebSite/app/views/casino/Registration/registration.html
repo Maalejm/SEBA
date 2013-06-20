@@ -15,24 +15,54 @@
     #{/if}
     <ul>
         <li>
-            <label for="email">&{'registration.email'}</label>
-            <input type="text" name="email" id="email" value="${flash.email}" />
+            <label for="firstName">First Name*</label>
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" value="${flash.firstName}" />
+            <!-- #{ifError 'firstName'}<span class="error">#{error 'firstName' /}</span>#{/ifError} -->
+        </li> 
+        
+        <li>
+            <label for="lastName">Last Name*</label>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="${flash.lastName}" />
+            <!-- #{ifError 'lastName'}<span class="error">#{error 'lastName' /}</span>#{/ifError} -->
+        </li>   
+        
+        <li>
+            <label for="email">Email*</label>
+            <input type="text" name="email" id="email" placeholder="Email" value="${flash.email}" />
             #{ifError 'email'}<span class="error">#{error 'email' /}</span>#{/ifError}
         </li>
+        
         <li>
-            <label for="password">&{'registration.password'}</label>
-            <input type="password" name="password" id="password" />
+            <label for="dateOfBirth">Date of Birth*</label>
+            <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" value="${flash.dateOfBirth}" />
+            <!-- #{ifError 'dateOfBirth'}<span class="error">#{error 'dateOfBirth' /}</span>#{/ifError} -->
+        </li> 
+        
+          <li>
+            <label for="address">Adress*</label>
+            <input type="text" name="address" id="address" placeholder="Street" value="${flash.address}" />
+            <input type="text" name="postalCode" id="postalCode" placeholder="postal Code" value="${flash.postalCode}" />
+            <!-- #{ifError 'address'}<span class="error">#{error 'address' /}</span>#{/ifError} -->
+        </li> 
+        
+        
+        <li>
+            <label for="password">Password*</label>
+            <input type="password" name="password" id="password" placeholder="Password"/>
             #{ifError 'password'}<span class="error">#{error 'password' /}</span>#{/ifError}
         </li>
+        
         <li>
-            <label for="confirm">&{'registration.confirm'}</label>
-            <input type="password" name="confirm" id="confirm" />
+            <label for="confirm">Confirm Password*</label>
+            <input type="password" name="confirm" id="confirm" placeholder="Password"/>
             #{ifError 'confirm'}<span class="error">#{error 'confirm' /}</span>#{/ifError}
         </li>
+        
         <li>           
             <input type="checkbox" name="acceptTermsOfService" id="acceptTermsOfService" value="true" ${flash.acceptTermsOfService ? 'checked':''}/>&{'registration.acceptTermsOfService'}             
             #{ifError 'acceptTermsOfService'}<span class="error">#{error 'acceptTermsOfService' /}</span>#{/ifError}<br/>
         </li>
+        
         <li>
             #{ugot.recaptcha theme:"clean", tabindex:"2"/}
         </li>

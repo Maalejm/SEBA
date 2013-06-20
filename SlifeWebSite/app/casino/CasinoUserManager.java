@@ -24,7 +24,7 @@ public interface CasinoUserManager {
 	 * 
 	 * @return true if created / false if not (user exists or so...)
 	 */
-	public boolean createNewCasinoUser(String email, String passwordHash,
+	public boolean createNewCasinoUser(String firstName, String lastName, String email,String dateOfBirth, String address, String passwordHash,
 			String confirmationCode);
 
 	// /////////////////////////////////////////////////////////////////////////
@@ -75,4 +75,5 @@ public interface CasinoUserManager {
 
 	public void deleteConfirmationCodeOfCasioUser(String email);
 
+	
 }

@@ -4,6 +4,8 @@ package controllers.casino;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import models.casino.jpa.User;
+
 import play.Play;
 import play.utils.Java;
 import casino.Casino;
@@ -50,6 +52,14 @@ public class Security extends Secure.Security {
 
     	}
 
+        
+  
+        
+        
+        
+        
+        
+        
     	/**
     	 * Annotate your methods using 
     	 * @Check("isConnected")

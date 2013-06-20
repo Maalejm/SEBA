@@ -27,7 +27,13 @@ public class Registration extends TransportUriGuarantee {
 	 * Do the validation of the registration screen
 	 */
 	public static void registrationFinish(@Recaptcha String captcha,
+			
+			 
+			@Required String firstName,
+			@Required String lastName,
 			@Required @Email String email,
+			@Required String dateOfBirth,
+			@Required String address,
 			@Required @Equals("confirm") @MinSize(8) String password,
 			@Required @MinSize(8) String confirm,
 			@IsTrue Boolean acceptTermsOfService) {
@@ -82,7 +88,7 @@ public class Registration extends TransportUriGuarantee {
 			String passwordHash = Casino.getHashForPassword(password);
 			String confirmationCode = Casino.shortUUID();
 
-			Casino.createNewCasinoUser(email, passwordHash,
+			Casino.createNewCasinoUser(firstName,lastName, email,dateOfBirth,address, passwordHash,
 					confirmationCode);
 
 			RegistrationMailer.confirmation(email, confirmationCode);

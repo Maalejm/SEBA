@@ -10,7 +10,7 @@ import casino.CasinoUserManager;
 public class JpaUserManager implements CasinoUserManager {
 
 	
-	public boolean createNewCasinoUser(String email, String passwordHash,
+	public boolean createNewCasinoUser(String firstName,String lastName, String email,String dateOfBirth, String address, String passwordHash,
 			String confirmationCode) {
 
 		User user = getOneUserWithEmail(email);
@@ -22,7 +22,7 @@ public class JpaUserManager implements CasinoUserManager {
 		
 		
 		
-		user = new User(email, passwordHash, confirmationCode);
+		user = new User(firstName, lastName, email, dateOfBirth, address, passwordHash, confirmationCode);
 		user.save();
 		
 		return true;
@@ -138,6 +138,7 @@ public class JpaUserManager implements CasinoUserManager {
 
 	}
 
+	
 	public String getUserPasswordHash(String email) {
 
 		User user = getOneUserWithEmail(email);
@@ -148,7 +149,6 @@ public class JpaUserManager implements CasinoUserManager {
 
 		return user.pwHash;
 	}
-
 	
 	public void setNewPasswordHashForUser(String email, String passwordHash) {
 
