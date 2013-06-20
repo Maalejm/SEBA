@@ -12,7 +12,7 @@ import casino.CasinoUserManager;
 public class JpaUserManager implements CasinoUserManager {
 
 	
-	public boolean createNewCasinoUser(String firstName,String lastName, String email,String dateOfBirth, String street, int postalCode, String passwordHash,
+	public boolean createNewCasinoUser(String firstName,String lastName, String levelOfStudy,String university, String email, String dateOfBirth, String street, int postalCode, int phoneNumber, String passwordHash,
 			String confirmationCode) {
 
 	Student student = getOneUserWithEmail(email);
@@ -24,7 +24,7 @@ public class JpaUserManager implements CasinoUserManager {
 		
 		
 		
-		student = new Student(firstName, lastName, email, dateOfBirth, street, postalCode, passwordHash, confirmationCode);
+		student = new Student(firstName, lastName, levelOfStudy, university, email, dateOfBirth, street, postalCode, phoneNumber, passwordHash, confirmationCode);
 		student.save();
 		
 		return true;

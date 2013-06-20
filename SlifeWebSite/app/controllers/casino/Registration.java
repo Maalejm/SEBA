@@ -32,10 +32,13 @@ public class Registration extends TransportUriGuarantee {
 			 
 			@Required String firstName,
 			@Required String lastName,
+			@Required String levelOfStudy,
+			@Required String university,
 			@Required @Email String email,
 			@Required String dateOfBirth,
 			@Required String street,
 			@Required int postalCode,
+			int phoneNumber,
 			@Required @Equals("confirm") @MinSize(8) String password,
 			@Required @MinSize(8) String confirm,
 			@IsTrue Boolean acceptTermsOfService) {
@@ -90,7 +93,7 @@ public class Registration extends TransportUriGuarantee {
 			String passwordHash = Casino.getHashForPassword(password);
 			String confirmationCode = Casino.shortUUID();
 
-			Casino.createNewCasinoUser(firstName,lastName, email,dateOfBirth,street, postalCode, passwordHash,
+			Casino.createNewCasinoUser(firstName,lastName, levelOfStudy, university, email, dateOfBirth, street, postalCode, phoneNumber, passwordHash,
 					confirmationCode);
 
 			RegistrationMailer.confirmation(email, confirmationCode);

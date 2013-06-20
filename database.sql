@@ -199,7 +199,7 @@ CREATE TABLE `student` (
   `postalCode` bigint(20) DEFAULT NULL,
   `levelOfStudy` varchar(255) DEFAULT NULL,
   `university` varchar(255) DEFAULT NULL,
-  `phonenumber` bigint(20) DEFAULT NULL,
+  `phoneNumber` bigint(20) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
   `image` varchar(300) DEFAULT NULL,
   `pwHash` varchar(255) DEFAULT NULL,
