@@ -2,6 +2,8 @@ package models.casino.jpa;
 
 import java.util.List;
 
+import models.Student;
+
 import play.Logger;
 
 import casino.Casino;
@@ -10,20 +12,20 @@ import casino.CasinoUserManager;
 public class JpaUserManager implements CasinoUserManager {
 
 	
-	public boolean createNewCasinoUser(String firstName,String lastName, String email,String dateOfBirth, String address, String passwordHash,
+	public boolean createNewCasinoUser(String firstName,String lastName, String email,String dateOfBirth, String street, int postalCode, String passwordHash,
 			String confirmationCode) {
 
-		User user = getOneUserWithEmail(email);
+	Student student = getOneUserWithEmail(email);
 		
-		if (user != null) {
+		if (student != null) {
 			
 			return false;
 		}
 		
 		
 		
-		user = new User(firstName, lastName, email, dateOfBirth, address, passwordHash, confirmationCode);
-		user.save();
+		student = new Student(firstName, lastName, email, dateOfBirth, street, postalCode, passwordHash, confirmationCode);
+		student.save();
 		
 		return true;
 
@@ -32,14 +34,14 @@ public class JpaUserManager implements CasinoUserManager {
 	
 	public boolean isUserActivated(String email) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return false;
 		}
 
 		// make sure the user confirmed the name
-		if (user.confirmationCode.length() != 0) {
+		if (student.confirmationCode.length() != 0) {
 			return false;
 		}
 
@@ -49,41 +51,41 @@ public class JpaUserManager implements CasinoUserManager {
 	
 	public boolean hasRole(String email, String role) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return false;
 		}
 
-		return user.hasRole(role);
+		return student.hasRole(role);
 
 	}
 
 	
 	public void addRole(String email, String role) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return;
 		}
 
-		user.addRole(role);
-		user.save();
+		student.addRole(role);
+		student.save();
 
 	}
 
 	
 	public void removeRole(String email, String role) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return;
 		}
 		
-		user.removeRole(role);
-		user.save();
+		student.removeRole(role);
+		student.save();
 
 	}
 
@@ -91,28 +93,28 @@ public class JpaUserManager implements CasinoUserManager {
 	public void setRecoveryPasswordCode(String email,
 			String recoveryPasswordCode) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return;
 		}
 
-		user.recoverPasswordCode = recoveryPasswordCode;
-		user.save();
+		student.recoverPasswordCode = recoveryPasswordCode;
+		student.save();
 
 	}
 
 	
 	public String getCasinoUserWithConfirmationCode(String confirmationCode) {
 
-		List<User> users = User.find("confirmationCode", confirmationCode)
+		List<Student> student = Student.find("confirmationCode", confirmationCode)
 				.fetch();
 
-		if (users.size() == 0) {
+		if (student.size() == 0) {
 
 			return null;
 
-		} else if (users.size() > 1) {
+		} else if (student.size() > 1) {
 
 			Logger.error("more than one User with  confirmation code "
 					+ confirmationCode
@@ -120,56 +122,56 @@ public class JpaUserManager implements CasinoUserManager {
 
 		}
 
-		return users.get(0).email;
+		return student.get(0).email;
 
 	}
 
 	
 	public void deleteConfirmationCodeOfCasioUser(String email) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return;
 		}
 
-		user.confirmationCode = "";
-		user.save();
+		student.confirmationCode = "";
+		student.save();
 
 	}
 
 	
 	public String getUserPasswordHash(String email) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return null;
 		}
 
-		return user.pwHash;
+		return student.pwHash;
 	}
 	
 	public void setNewPasswordHashForUser(String email, String passwordHash) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return;
 		}
 
-		user.pwHash = passwordHash;
+		student.pwHash = passwordHash;
 
-		user.save();
+		student.save();
 
 	}
 
 	
 	public boolean doesUserExist(String email) {
 
-		User user = getOneUserWithEmail(email);
+		Student student = getOneUserWithEmail(email);
 
-		if (user == null) {
+		if (student == null) {
 			return false;
 		}
 
@@ -180,14 +182,14 @@ public class JpaUserManager implements CasinoUserManager {
 	public String getCasinoUserWithRecoveryPasswordCode(
 			String recoverPasswordCode) {
 
-		List<User> users = User
+		List<Student> student = Student
 				.find("recoverPasswordCode", recoverPasswordCode).fetch();
 
-		if (users.size() == 0) {
+		if (student.size() == 0) {
 
 			return null;
 
-		} else if (users.size() > 1) {
+		} else if (student.size() > 1) {
 
 			Logger.error("more than one User with  recoverPasswordCode "
 					+ recoverPasswordCode
@@ -195,18 +197,18 @@ public class JpaUserManager implements CasinoUserManager {
 
 		}
 
-		return users.get(0).email;
+		return student.get(0).email;
 	}
 
-	private User getOneUserWithEmail(String email) {
+	private Student getOneUserWithEmail(String email) {
 
-		List<User> users = User.find("email", email).fetch();
+		List<Student> student = Student.find("email", email).fetch();
 
-		if (users.size() == 0) {
+		if (student.size() == 0) {
 
 			return null;
 
-		} else if (users.size() > 1) {
+		} else if (student.size() > 1) {
 
 			Logger.error("more than one User "
 					+ email
@@ -214,7 +216,7 @@ public class JpaUserManager implements CasinoUserManager {
 
 		}
 
-		return users.get(0);
+		return student.get(0);
 
 	}
 

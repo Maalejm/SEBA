@@ -4,7 +4,7 @@ package controllers.casino;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import models.casino.jpa.User;
+import models.Student;
 
 import play.Play;
 import play.utils.Java;

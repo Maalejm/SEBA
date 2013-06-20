@@ -191,24 +191,28 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(50) DEFAULT NULL,
-  `lastName` varchar(50) DEFAULT NULL,
-  `birthDate` int(20) DEFAULT NULL,
-  `university` varchar(11) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `phonenumber` int(20) DEFAULT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `dateOfBirth` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `postalCode` bigint(20) DEFAULT NULL,
+  `levelOfStudy` varchar(255) DEFAULT NULL,
+  `university` varchar(255) DEFAULT NULL,
+  `phonenumber` bigint(20) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
   `image` varchar(300) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
+  `pwHash` varchar(255) DEFAULT NULL,
+  `confirmationCode` varchar(255) DEFAULT NULL,
+  `recoverPasswordCode` varchar(255) DEFAULT NULL,
+  `roles` tinyblob DEFAULT NULL,
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `student`
 -- ----------------------------
-BEGIN;
-INSERT INTO `student` VALUES ('1', 'waleed', 'Shihadeh', '2222', '3', '2222222', '22222', '2222', null, null);
-COMMIT;
+
 
 SET FOREIGN_KEY_CHECKS = 1;

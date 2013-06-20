@@ -4,6 +4,7 @@ import play.Play;
 import play.data.validation.Email;
 import play.data.validation.Equals;
 import play.data.validation.IsTrue;
+import play.data.validation.MaxSize;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import ugot.recaptcha.Recaptcha;
@@ -33,7 +34,8 @@ public class Registration extends TransportUriGuarantee {
 			@Required String lastName,
 			@Required @Email String email,
 			@Required String dateOfBirth,
-			@Required String address,
+			@Required String street,
+			@Required int postalCode,
 			@Required @Equals("confirm") @MinSize(8) String password,
 			@Required @MinSize(8) String confirm,
 			@IsTrue Boolean acceptTermsOfService) {
@@ -88,7 +90,7 @@ public class Registration extends TransportUriGuarantee {
 			String passwordHash = Casino.getHashForPassword(password);
 			String confirmationCode = Casino.shortUUID();
 
-			Casino.createNewCasinoUser(firstName,lastName, email,dateOfBirth,address, passwordHash,
+			Casino.createNewCasinoUser(firstName,lastName, email,dateOfBirth,street, postalCode, passwordHash,
 					confirmationCode);
 
 			RegistrationMailer.confirmation(email, confirmationCode);
