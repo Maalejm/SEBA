@@ -40,7 +40,7 @@
                 </div>
                 <div class="span10">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a> <span class="divider">/</span></li>
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
                         <li class="active">Ads</li>
                     </ul>
                     
@@ -52,7 +52,7 @@
                         <button class="btn"><a href="/ads/newAd">Create New Ad</a></button>
                     </div>
                     %{ if (success==1) {  }%
-                    <div class="success"> Your add successfully created</div>
+                    <div class="success"> Your ad successfully created</div>
                     %{}}%
                     <div class="span10 searchForm">
                         
@@ -122,9 +122,10 @@
     	
     	sessvars.search = search
         sessvars.category = category
-        sessvars.size =size //$('#size').val()
+        sessvars.size =size //$('#size').val() 
         var listAction = #{jsAction @list(':search',':category', ':size', ':page',':firstPage',':lastPage') /} 
-        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: sessvars.size, page: sessvars.page
+        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: sessvars.size,
+        	page: sessvars.page
         	, firstPage: sessvars.firstPage, lastPage: sessvars.lastPage}), function() {
            
            
@@ -202,10 +203,10 @@
     })
     
     // Init
-    if(sessvars.search != undefined) {
+    //if(sessvars.search != undefined) {
         search()
         
-    }
+  //  }
    
 </script>
 

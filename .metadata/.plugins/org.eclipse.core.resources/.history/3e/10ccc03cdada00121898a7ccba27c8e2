@@ -1,0 +1,21 @@
+package controllers;
+
+import play.mvc.Controller;
+import models.RentOffer;
+
+public class RentOffers extends Controller{
+	
+	
+	 
+	 public static void createOffer(RentOffer rentoffer)
+	    {
+	    	System.out.println("adasdaaaaaaaaaa"+rentoffer.description);
+	    	 render();
+	    }
+	 
+	 public static void addNewOffer()
+	    {
+	    	 render();
+	    }
+
+}

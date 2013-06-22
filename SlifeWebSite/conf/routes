@@ -5,12 +5,20 @@
 # Home page
 GET     /                                       Application.index
 
-GET     /ads                                       Ads.index
-GET     /ads/list                            Ads.list
-GET     /ads/newAd                                       Ads.newAd
-POST    /ads/createAd                                       Ads.createAd
-GET     /ads/{id}                                       Ads.index
+GET     /ads                                       			  Ads.index
+GET     /ads/list                            				   Ads.list
+GET     /ads/newAd                                       	   Ads.newAd
+POST    /ads/createAd                                          Ads.createAd
+GET     /ads/{id}                                       	   Ads.index
 GET     /ads/viewAd/{id}                                       Ads.viewAd
+
+
+GET     /rentoffer                                             RentOffers.index
+GET     /rentoffer/list                          			   RentOffers.list
+GET     /rentoffer/newOffer                                    RentOffers.newOffer
+POST    /rentoffer/createOffer                                 RentOffers.createOffer
+GET     /rentoffer/{id}                                        RentOffers.index
+GET     /rentoffer/viewOffer/{id}                              RentOffers.viewOffer
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -41,4 +49,6 @@ POST        /registration/lostpassword/finish          casino.Registration.lostP
 GET         /registration/lostpassword/pending         casino.Registration.lostPasswordEmailSentCheckInbox
 GET         /registration/lostpassword/confirm/{code}  casino.Registration.lostPasswordNewPassword
 POST        /registration/lostpassword/confirm/finish  casino.Registration.lostPasswordNewPasswordFinish
+
+
  

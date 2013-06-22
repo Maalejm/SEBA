@@ -1,0 +1,167 @@
+<!-- START PAGE SOURCE -->
+<div class="tail-top" style="margin-top:10px;">
+  <section id="content">
+    <div class="container">
+
+      <div class="inside">
+        <div class="wrapper row-1">
+          <div class="box col-2 ">
+            <div class="border-right ">
+              <div class="border-bot ">
+                <div class="border-left ">
+                  <div class="left-top-corner ">
+                    <div class="right-top-corner ">
+                      <div class="right-bot-corner ">
+                        <div class="left-bot-corner ">
+                          <div class="inner">
+                            <h3 style="padding-left:80px;"><a href="#">ADS</a></h3>
+                            <ul class="info-list">
+                                #{list latestAds, as:'ads'}
+                              <li><a href="#">
+                                <div class="arrow">
+                                  <div class="img-1">${ads.image}</div>          
+%{
+String head=ads.headline.toString();
+if(head.length()>19)
+head=head.substring(0,26);
+}%
+                                  <div class="img-box"><span> ${head}</span><br/>
+                                     ${ads.createDate}<br/>
+%{
+String description=ads.description.toString();
+if(description.length()>19)
+description=description.substring(0,26);
+}%
+                                    ${description}</div>
+                                </div>
+                              </a></li>
+                              #{/list}
+                              </ul>
+						     <!-- <span class="price">$ 9.95 p/m</span>-->
+                            <div class="aligncenter"><a href="#" class="link1"><span><span>More</span></span></a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box col-2 maxheight">
+            <div class="border-right maxheight">
+              <div class="border-bot maxheight">
+                <div class="border-left maxheight">
+                  <div class="left-top-corner maxheight">
+                    <div class="right-top-corner maxheight">
+                      <div class="right-bot-corner maxheight">
+                        <div class="left-bot-corner maxheight">
+                          <div class="inner">
+                            <h3 style="padding-left:42px;"><a href="#">AUCTIONS</a></h3>
+                            <ul class="info-list">
+                             #{list latestOffers, as:'offer'}
+                               <li><a href="#">
+							    <div class="arrow"><div class="img-1">${offer.image}</div>
+%{
+String head=offer.headline.toString();
+if(head.length()>19)
+head=head.substring(0,26);
+
+String price1=offer.price.toString();
+if(price1.length()>19)
+price1=price1.substring(0,26);
+}%
+								 <div class="img-box" style="float:left;"><span>${head}</span><br/>10:06:13 at 6 PM<br/>${price1} euros</div>
+								</div>
+							 </a></li>
+							   #{/list}
+                            </ul>
+                           <!-- <span class="price">$ 14.95 p/m</span>-->
+                            <div class="aligncenter"><a href="#" class="link1"><span><span>More</span></span></a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box col-3 maxheight">
+            <div class="border-right maxheight">
+              <div class="border-bot maxheight">
+                <div class="border-left maxheight">
+                  <div class="left-top-corner maxheight">
+                    <div class="right-top-corner maxheight">
+                      <div class="right-bot-corner maxheight">
+                        <div class="left-bot-corner maxheight">
+                          <div class="inner">
+                            <h3 style="padding-left:70px;"><a href="#">RENT</a></h3>
+                            <ul class="info-list">
+                              #{list latestRooms, as:'room'}
+%{
+String head=room.headline.toString();
+if(head.length()>19)
+head=head.substring(0,26);
+
+String price1=offer.price.toString();
+if(price1.length()>19)
+price1=price1.substring(0,26);
+}%
+                             <li><a href="#">
+							    <div class="arrow"><div class="img-1">${room.image}</div>
+								 <div class="img-box" style="float:left;"><span>${head}</span><br/>${room.startDate}<br/>${price1} euros/night</div>
+								</div>
+							 </a></li>
+                             #{/list}
+                            </ul>
+                            <!--<span class="price">$ 19.95 p/m</span>-->
+                            <div class="aligncenter"><a href="#" class="link1"><span><span>More</span></span></a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box col-4 maxheight" >
+            <div class="border-right maxheight">
+              <div class="border-bot maxheight">
+                <div class="border-left maxheight">
+                  <div class="left-top-corner maxheight">
+                    <div class="right-top-corner maxheight">
+                      <div class="right-bot-corner maxheight">
+                        <div class="left-bot-corner maxheight">
+                          <div class="inner">
+                            <h3 style="padding-left:35px;"><a href="#">DISCUSSION</a></h3>
+                            <ul class="info-list">
+                             #{list latestQuestions, as:'Qus'}
+%{
+String ques=Qus.question.toString();
+if(ques.length()>19)
+ques=ques.substring(0,26);
+}%
+                              <li><a href="#">
+							    <div class="arrow"><div class="img-1"></div>
+								 <div class="img-box" style="float:left;"><span>${ques}</span><br/>10:06:13 at 6 PM<br/>universitat station at U6</div>
+								</div>
+							 </a></li>
+                              #{/list}
+                            </ul>
+                            <div class="aligncenter"><a href="#" class="link1"><span><span>More</span></span></a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

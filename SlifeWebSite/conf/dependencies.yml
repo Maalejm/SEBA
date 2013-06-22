@@ -11,4 +11,4 @@ require:
 
 require:
     - play
-    - play -> crud
+

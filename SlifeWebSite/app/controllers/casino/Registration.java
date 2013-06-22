@@ -1,5 +1,6 @@
 package controllers.casino;
 
+import controllers.Application;
 import play.Play;
 import play.data.validation.Email;
 import play.data.validation.Equals;
@@ -32,7 +33,6 @@ public class Registration extends TransportUriGuarantee {
 			 
 			@Required String firstName,
 			@Required String lastName,
-			@Required String levelOfStudy,
 			@Required String university,
 			@Required @Email String email,
 			@Required String dateOfBirth,
@@ -47,9 +47,9 @@ public class Registration extends TransportUriGuarantee {
 		checkAuthenticity();
 
 		boolean hasErrors = true;
-
+       
 		if (Play.id.equals("test")) {
-
+			
 			// we are in test mode.. ignore wrong captcha
 			if (validation.errors().size() == 1) {
 
@@ -60,28 +60,41 @@ public class Registration extends TransportUriGuarantee {
 
 		} else {
 
+		
 			hasErrors = validation.hasErrors();
+
 
 		}
 
 		// check if user exists and don't allow to register user:
 		if (!hasErrors) {
-
+			System.out.println("12");
 			if (Casino.doesUserExist(email)) {
 				hasErrors = true;
-
+				System.out.println("16");
 			}
 		}
-
+		hasErrors=false;
 		// save or display error
 		if (hasErrors) {
 
 			flash.error("registration.error");
 			validation.keep();
+			
+			//save the typed values
 			params.flash("email");
+			params.flash("firstName");
+			params.flash("lastName");
+			//params.flash("levelOfStudy");
+			params.flash("university");
+			params.flash("dateOfBirth");
+			params.flash("street");
+			params.flash("postalCode");
+			params.flash("phoneNumber");
+			
+           
 
-			// If acceptTermsOfService is not checked it is not sent to server..
-			// therefore we check for null...
+		
 			if (acceptTermsOfService != null) {
 				params.flash("acceptTermsOfService");
 			}
@@ -93,7 +106,7 @@ public class Registration extends TransportUriGuarantee {
 			String passwordHash = Casino.getHashForPassword(password);
 			String confirmationCode = Casino.shortUUID();
 
-			Casino.createNewCasinoUser(firstName,lastName, levelOfStudy, university, email, dateOfBirth, street, postalCode, phoneNumber, passwordHash,
+			Casino.createNewCasinoUser(firstName,lastName, university, email, dateOfBirth, street, postalCode, phoneNumber, passwordHash,
 					confirmationCode);
 
 			RegistrationMailer.confirmation(email, confirmationCode);
@@ -109,7 +122,8 @@ public class Registration extends TransportUriGuarantee {
 	 */
 	public static void pending() {
 
-		render();
+		Application.index(1);
+		//render();
 	}
 
 	/**

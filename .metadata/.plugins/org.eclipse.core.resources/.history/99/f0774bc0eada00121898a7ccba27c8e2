@@ -1,0 +1,159 @@
+#{extends 'mainLayout.html' /}
+#{set title:'New Rent Offer' /}
+
+
+#{jQueryValidate class:models.RentOffer.class, key:'of' /}
+
+ <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(cat.id==1) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    
+                    <div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li><a href="rentoffer">Rent Offers</a> <span class="divider">/</span></li>
+                        <li class="active">Create New Offer</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        <button class="btn">List My Offers</button>
+                    </div>
+                    
+                                        
+                                        
+                    
+                    #{form id:'addForm', method:'POST', action:@RentOffers.createOffer() ,enctype:'multipart/form-data'}
+                        <fieldset>
+                            <legend>Create New Rent Offer</legend>
+                            <!-- #{ifErrors}
+								<div class="error">
+   									 <h2>Oops, please correct these errors</h2>
+								</div>
+							#{/ifErrors}
+ -->
+                              #{field 'of.category.id'}
+        						<div class="field">         
+            					<label for="${field.id}">Category * : </label>
+            					<select id="${field.id}"  name="${field.name}" class="span5 ${field.errorClass}" >
+                                
+                                #{list cats, as:'cat'} 
+                                <option value="${cat.id}">${cat.name}</option>
+                    		    #{/list}
+                          	  </select>
+                           		 
+						 	 </div>
+      					   #{/field}
+							#{field 'of.headline'}
+                            <label for="${field.id}" >Head line *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span5 ${field.errorClass}" type="text" class="span5" placeholder="Descripe your Offer">
+                             
+                            #{/field}
+                            #{field 'of.startDate'}
+                            <label for="${field.id}" >From Date *</label>
+                            <div class="well">
+                            <div id="datetimepicker2" class="input-append date">
+                             <input data-format="yyyy-MM-dd" id="${field.id}" value="${field.value}"  name="${field.name}" class="span5 ${field.errorClass}" type="text" class="span5" placeholder="Type an  start Date">
+                             <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+  </div>
+                            #{/field}
+                            
+                            #{field 'of.endDate'}
+                            <label for="${field.id}" >To Date *</label>
+                            <div class="well">
+                             <div id="datetimepicker1" class="input-append date">
+                             <input data-format="yyyy-MM-dd" id="${field.id}" value="${field.value}"  name="${field.name}" class="span5 ${field.errorClass}" type="text" class="span5" placeholder="Type End Date">
+                          <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+  </div>
+                            #{/field}
+                            
+                            #{field 'of.pricePerNight'}
+                            <label for="${field.id}" >Price Per Night *</label>
+                            
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span5 ${field.errorClass}" type="text" class="span5" placeholder="Type End Date">
+                          
+                            #{/field}
+                           
+                            
+                            #{field 'photo'}
+                            <label for="${field.id}" >Image *</label>
+                             
+                             <div class="fileupload fileupload-new" data-provides="fileupload">
+  								<div class="input-append">
+   								 <div class="uneditable-input span3"><i class="icon-file fileupload-exists">
+   								 </i> <span class="fileupload-preview"></span></div><span class="btn btn-file">
+   								 <span class="fileupload-new">Select file</span>
+   								 <span class="fileupload-exists">Change</span>
+   								 <input type="file" id="${field.id}" value="${field.value}"  name="${field.name}" class="${field.errorClass}" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+   								 
+  								
+  								</div> 
+  								
+							</div>
+							
+                             
+                            #{/field}
+                            
+                                      
+                             #{field 'of.description'}                              
+                            <label for="${field.id}" >Details *</label>
+                                <textarea rows="6"  id="${field.id}"   name="${field.name}" class="input_textarea ${field.errorClass}">${field.value}</textarea>
+                              
+                            #{/field} 
+                            
+                                  <br/>
+                                 
+                            
+                           
+                                  <div class="form-actions">
+                                      <input type="submit" class="btn btn-primary"/>
+                                      
+                                  </div>
+                        </fieldset>
+                    #{/form}
+                    
+                    
+                                                            
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+       
+</script>
+        
+ 
+

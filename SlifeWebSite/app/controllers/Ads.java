@@ -31,8 +31,12 @@ public class Ads  extends Application {
 	
 	public static int getFontSize(int count,int min, int max){
 		int fontsize=1;
+        float di=((max-min)/30);
 		
-		fontsize=10+(count-min)/((max-min)/30);
+		if (di==0)
+			di=1;
+		
+		fontsize=(int) (10+(count-min)/di);
 		
 		return fontsize;
 	} 

@@ -1,7 +1,12 @@
-#{extends 'casino/Registration/layout.html' /}
+#{extends 'mainLayout.html' /}
+#{set title:'Registration' /}
+
+<div class="container">
+
+<legend>Create your personal account</legend>
+     
 
 
-<h1>Create your personal Account</h1>
 
 #{form @registrationFinish()}
 
@@ -16,130 +21,148 @@
     #{/if}
     
 
+
+
+
+
+	<!-- firstName -->
+	<div class="control-group">
+        <label class="control-label"  for="firstname">
+        	<div align="left">First Name *</div>
+        </label>
+        <div class="control-group">
+        <input class="input-xlarge" type="text" name="firstName" id="firstName" placeholder="First Name" value="${flash.firstName}"/> 
+         #{ifError 'firstName'}<span class="error">#{error 'firstName' /}</span>#{/ifError}   				 			 		
+         </div>
+    </div>
+
+
+
+	<!-- lastName -->
+	<div class="control-group">
+        <label class="control-label"  for="lastName">
+        	<div align="left">Last Name *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="text" name="lastName" id="lastName" placeholder="Last Name" value="${flash.lastName}"/> 
+            #{ifError 'lastName'}<span class="error">#{error 'lastName' /}</span>#{/ifError} 
+        </div>
+	</div>
+
+
+
+	<!-- University-->
+    <div class="control-group">      
+        <label class="control-label" for="university">
+          <div align="left">University *</div>
+        </label>             
+    	<div class="controls">
+      	<select name="university" class="input-xlarge" id="university">
+        	<option value="1">Technical University Munich</option>
+        	<option value="1">Ludwig Maximilian University of Munich</option>
+      	</select>    
+		</div>
+	</div>           
+
+
+	<!-- email -->
+	<div class="control-group">
+        <label class="control-label"  for="email">
+        	<div align="left">Email *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="text" name="email" id="email" placeholder="Email" value="${flash.email}"/> 
+            #{ifError 'email'}<span class="error">#{error 'email' /}</span>#{/ifError}   				 			 		
+        </div>
+	</div>
+
+
+	<!-- Date of Birth -->
+	<div class="control-group">
+        <label class="control-label"  for="dateOfBirth">
+        	<div align="left">Date of Birth *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" value="${flash.dateOfBirth}"/> 
+            #{ifError 'dateOfBirth'}<span class="error">#{error 'dateOfBirth' /}</span>#{/ifError}   				 			 		
+        </div>
+	</div>
+
+
+	<!-- Adress -->
+	<div class="control-group">
+        <label class="control-label"  for="adress">
+        	<div align="left">Adress *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-medium" type="text" name="street" id="street" placeholder="Street" value="${flash.street}"/> 
+            <input class="input-small" type="text" name="postalCode" id="postalCode" placeholder="Postal Code" value="${flash.postalCode}"/> 
+            #{ifError 'street'}<span class="error">#{error 'street' /}</span>#{/ifError}  
+            #{ifError 'postalCode'}<span class="error">#{error 'postalCode' /}</span>#{/ifError} 				 			 						 			 		
+        </div>      
+	</div>
+
+	<!-- Phone Number -->
+	<div class="control-group">
+        <label class="control-label"  for="phoneNumber">
+        	<div align="left">Phone Number</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" value="${flash.phoneNumber}"/>		 			 		
+        </div>
+	</div>
+
     
+    <!-- Password -->
+	<div class="control-group">
+        <label class="control-label"  for="password">
+        	<div align="left">Password *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="password" name="password" id="password" placeholder="Password" value="${flash.password}"/> 
+            #{ifError 'password'}<span class="error">#{error 'password' /}</span>#{/ifError} 				 			 		
+        </div>
+	</div>
     
-    <ul>
-        <li>
-            <label for="firstName">First Name*</label>
-            <input type="text" name="firstName" id="firstName" placeholder="First Name" value="${flash.firstName}" />
-            <!-- #{ifError 'firstName'}<span class="error">#{error 'firstName' /}</span>#{/ifError} -->
-            <p>
-       		</p>
-        </li> 
+     <!-- Confirm Password -->
+	<div class="control-group">
+        <label class="control-label"  for="confirm">
+        	<div align="left">Confirm Password *</div>
+        </label>
+        <div class="controls">      
+			<input class="input-xlarge" type="password" name="confirm" id="confirm" placeholder="Confirm Password" value="${flash.confirm}"/> 
+            #{ifError 'confirm'}<span class="error">#{error 'confirm' /}</span>#{/ifError}   				 			 		
+        </div>
+	</div>
+
+
+ 	<!-- Terms of Service -->
+    <div class="control-group">
+    	<label class="checkbox">
+   			<input type="checkbox" name="acceptTermsOfService" id="acceptTermsOfService" value="true" ${flash.acceptTermsOfService ? 'checked':''}/>
+         		&{'registration.acceptTermsOfService'}             
+           	 	#{ifError 'acceptTermsOfService'}<span class="error">#{error 'acceptTermsOfService' /}</span>#{/ifError}<br/>
+    	</label>
+    </div>
+
+
+	<!-- Recaptcha -->
+	<div class="control-group">
+		#{ugot.recaptcha theme:"clean", tabindex:"2"/}
+	</div>
+
+
+
+ 	<!-- Button "Create My Account" -->
+    <div class="control-group">
         
-        <li>
-            <label for="lastName">Last Name*</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="${flash.lastName}" />
-            <!-- #{ifError 'lastName'}<span class="error">#{error 'lastName' /}</span>#{/ifError} -->
-            <p>
-       		</p>
-        </li>   
-        
-        <li>
-            <label for="levelOfStudy">Level of Study*</label>
-           	<select id="levelOfStudy" name="levelOfStudy"  class="input-medium">
-        	<option>Bachelor</option>
-        	<option>Master</option>
-       		<option>Diplom</option>
-       		</select>
-       		<!-- #{ifError 'levelOfStudy'}<span class="error">#{error 'levelOfStudy' /}</span>#{/ifError} -->
-       		
-       		
-       		
-           	<select id="university" name="university"  class="input-medium">
-        	<option>TUM</option>
-        	<option>LMU</option>
-       		<option>FH</option>
-       		</select>
-       		<!-- #{ifError 'university'}<span class="error">#{error 'university' /}</span>#{/ifError} -->
-       		
-       		
-       		<p>
-       		</p>
-        </li>   
-        
-        
-        <li>
-            
-        </li> 
-        
-        
-        
-        
-        <li>
-            <label for="email">Email*</label>
-            <input type="text" name="email" id="email" placeholder="Email" value="${flash.email}" />
-            #{ifError 'email'}<span class="error">#{error 'email' /}</span>#{/ifError}
-            <p>
-       		</p>
-        </li>
-        
-        <li>
-            <label for="dateOfBirth">Date of Birth*</label>
-            <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" value="${flash.dateOfBirth}" />
-            <!-- #{ifError 'dateOfBirth'}<span class="error">#{error 'dateOfBirth' /}</span>#{/ifError} -->
-            <p>
-       		</p>
-        </li> 
-        
-        <li>
-            <label for="street">Adress*</label>
-            <input type="text" name="street" id="street" placeholder="Street" value="${flash.street}" />
-            <!-- #{ifError 'address'}<span class="error">#{error 'address' /}</span>#{/ifError} -->
-            <p>
-       		</p>
-        </li> 
-        
-        <li>
-        	<label for="postalCode"> *</label>
-          	<input type="text" name="postalCode" id="postalCode" placeholder="postal Code" value="${flash.postalCode}" />
-          	<!-- #{ifError 'address'}<span class="error">#{error 'address' /}</span>#{/ifError} -->
-          	<p>
-       		</p>
-        </li>
-        
-        <li>
-        	<label for="phoneNumber"> Phonenumber </label>
-          	<input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phonenumber" value="${flash.phoneNumber}" />
-          	<!-- #{ifError 'phoneNumber'}<span class="error">#{error 'phoneNumber' /}</span>#{/ifError} -->
-          	<p>
-       		</p>
-        </li>
-        
-        
-        <li>
-            <label for="password">Password*</label>
-            <input type="password" name="password" id="password" placeholder="Password"/>
-            #{ifError 'password'}<span class="error">#{error 'password' /}</span>#{/ifError}
-            <p>
-       		</p>
-        </li>
-        
-        <li>
-            <label for="confirm">Confirm Password*</label>
-            <input type="password" name="confirm" id="confirm" placeholder="Password"/>
-            #{ifError 'confirm'}<span class="error">#{error 'confirm' /}</span>#{/ifError}
-            <p>
-       		</p>
-        </li>
-        
-        <li>           
-            <input type="checkbox" name="acceptTermsOfService" id="acceptTermsOfService" value="true" ${flash.acceptTermsOfService ? 'checked':''}/>&{'registration.acceptTermsOfService'}             
-            #{ifError 'acceptTermsOfService'}<span class="error">#{error 'acceptTermsOfService' /}</span>#{/ifError}<br/>
-            <p>
-       		</p>
-        </li>
-        
-        <li>
-            #{ugot.recaptcha theme:"clean", tabindex:"2"/}
-            <p>
-       		</p>
-        </li>
-        <li>
-            <input type="submit" id="submit" value="&{'registration.register'}" />
-        </li>
-    </ul>
-    
+        <input type="submit" class="btn btn-success" id="submit" value="Registration"/>
+     
+          
+          
+      
   
     
 #{/form}
+
+</div>

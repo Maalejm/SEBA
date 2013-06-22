@@ -1,2 +1,0 @@
-#{extends 'mainLayout.html' /}
-#{set title:'New Ads' /}

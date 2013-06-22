@@ -1,0 +1,301 @@
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+    
+        <link rel="stylesheet" media="screen" href="/public/stylesheets/style.css">
+        <link rel="stylesheet" media="screen" href="/public/stylesheets/bootstrap.min.css">
+       
+            
+    <script>
+        function createNewRentOffer() {
+        
+            
+            document.getElementById("rentoffers").style.display = 'none';
+            document.getElementById("RentOfferIsCurrent").style.color="#000000";
+            document.getElementById("addNewRentiongOfferHeader").style.display = 'block';
+            document.getElementById("addNewRentiongOffer").style.display = 'block';
+            document.getElementById("createNewOfferIsCurrent").style.display='block';
+            
+           
+       
+          
+        }
+        
+        function getRoomPage ()
+        {
+            document.getElementById("rentoffers").style.display = 'block';
+            document.getElementById("RentOfferIsCurrent").style.color="#000000";
+            document.getElementById("RentOfferIsCurrent").style.fontWeight=200;
+            document.getElementById("addNewRentiongOfferHeader").style.display = 'none';
+            document.getElementById("addNewRentiongOffer").style.display = 'none';
+            document.getElementById("createNewOfferIsCurrent").style.display='none';
+          
+        }
+        
+    </script>
+    </head>
+    <body>
+       
+  <br>  
+<div class="container" style="margin-left: 290px">
+<div class ="navbar" >
+  <div class="navbar-inner" >
+   <ul class="nav">
+        <li><a href="#"> SLife</b></a></li>
+        <li><a href="#">  <img src="/public/images/ads.png" height=18px width=18px style="padding-right: 4px;"/>ads</a></li>
+        <li><a href="#">  <img src="/public/images/discussion.png" height=20px width=20px style="padding-right: 4px;"/>discussion</a></li>
+        <li><a href="#">  <img src="/public/images/rentroom.png" height=20px width=20px style="padding-right: 4px;"/>room</a></li>
+        <li><a href="#">  <img src="/public/images/trade.png" height=18px width=18px style="padding-right: 4px;">trade</a></li>
+        <li ><a href="#" style="padding-right : 50px;">  <img src="/public/images/profil.jpg" height=18px width=18px style="padding-right: 4px;">Log out</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+<div id ="serachtable"style="margin-left: 270px">
+    
+    <table class="breadcrump" width=937 >
+        <tr>
+        <td style=" border: 1; text-align: right; font-size: 14px; color: #0000A0;width: 40px"><a href="#" style="color: #000000;text-decoration: none"> Main</a></td>
+                <td style=" border: 1; text-align: left; font-size: 14px; color: #0000A0; width:60px"><a href="#" style="color: #0000A0; text-decoration: none"; id =RentOfferIsCurrent onclick="getRoomPage()"> > <b>Rooms </b></a></td>
+                <td><a href="#" style="color: #0000A0; text-decoration: none";  hidden="YES" id="createNewOfferIsCurrent"> > <b>Create new renting offer </b></a></td>
+        </tr>
+    </table>
+    
+    <table class="serachtable" width=937 height=100 id="searchtable" >
+        
+        <tr class= "cell" style="background-color: #FFFFFF">
+            
+            <td colspan="8" style="text-align: right; border: 1"><button class="btn" style="margin-right: 50px;"><i class="icon-plus"></i> List my renting offers</button>
+            <button class="btn" onclick="createNewRentOffer()"><i class="icon-plus"></i> Create new renting offer</p></button></i></a></td>
+        </tr>
+     <tr class= "cell">
+        <td style="width: 25px; color: #0000A0 ;  margin: 10px";> From </td >
+        <td style="width:70px; padding-left :10px;"><input type="date" name="startingdate" /></td>
+        <td style="width: 25px; color: #0000A0 ; padding-left :0px">Until</td>
+        <td style="width:70px; padding-left:10px"><input type="date" name="endingdate"/></td>
+        <td style="width: 10px; text-align: left; color: #0000A0 "><input type = "checkbox" id = "days" /></td>
+        <td style="width: 70px; color: #0000A0 ">+/- 3 days</td>
+        <td style="width: 40px;">
+            <select id = "myList" style="width: auto">
+                <option value = "1">Sort</option>
+                <option value = "2">Price</option>
+                <option value = "3">Location</option>
+             </select></td>
+        <td style="width: 50px; text-align: right; padding-right: 5px;"><input type="button" class="btn btn-success" value="GO" /></td>
+     </tr>
+    </table>
+    </div>
+
+<table class="animation" style="margin-top: -190px">
+<!-- here we put some animation -->
+</table>
+
+<div class="list" style="border:1px;">
+<ul class="nav nav-list">
+    
+  <li class="active"><li><a href="#">Munich</a></li>
+  <li><a href="#">Graching - main campus</a></li>
+  <li><a href="#">Garching</a></li>
+  <li><a href="#">kefergarden</a></li>
+  <li><a href="#">Studentenstadt</a></li>
+   <li><a href="#">City center</a></li>
+
+</ul>
+</div>
+
+<table class="hottopics">
+    <tr><td></td></tr>
+    </table>
+
+<br>
+
+
+
+    <div class=rentoffers id=rentoffers style="margin-left: 230px; margin-top: -490px">
+    
+    
+    <table  class="rentoffers"  border=1 width=937 height=100  align="center">
+     <tr>
+        <td style="width: 312px; height: 150px">
+            
+            <table  title="offer1"    style="width: 308px; height: 200px">
+                
+                <tr style="width: 612px; height: 50px" class= "cell">
+                    <td colspan="2"><b>Addresse :</b></td>
+                </tr>
+                <tr class= "cell">
+                    <td class= "cell"  style=" vertical-align: top;width: 80px" ><img src="/public/images/room.jpg" style="width: 80px; height: 70px;"></td>
+                    <td>
+                        <table >
+                            <tr >
+                                <td colspan="4" style=" vertical-align: top;width: 120px " ><b >32 euros / night</b></style><br> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;" colspan="2"><b>From</b></td><td style="text-align: center;">07-06-13</td>
+                                
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;" colspan="2"><b>Until</b></td><td>15-06-13</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class= "cell" >
+                    <td colspan="2">Small description/ information about the room</td>
+                </tr>
+                 <tr class= "cell" >
+                    <td colspan="2" style="text-align: right;"><a href="#openModal" style="text-decoration: none; color: #008000; padding: 10px"> <b>More details</b></a></button></td>
+                </tr>
+                 
+            </table>
+         
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+     </tr>
+     
+      <tr >
+        <td style="width: 312px; height: 250px">
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    </table>
+</div>
+
+<br>
+    
+<table class="bottom-menu" style="margin-left: 20px;">
+    <tr>
+        <td >
+ <table class="ads"  border = 0px width=185 height=100  ">
+        <tr><td><b><a href="#">ads</a></b></td></tr>
+        <tr><td><a href="#">Create new ad</a></td></tr>
+        <tr> <td><a href="#">List my ads</a></td><tr>
+    </table>
+    <td>
+     <table class="discussion"  border = 0px width=185 height=100  ">
+        <tr><td><b><a href="#">Discussion</a></b></td></tr>
+        <tr><td><a href="#">Ask a question</a></td></tr>
+        <tr> <td><a href="#">List my questions</a></td><tr>
+    </table>
+     <td>
+     <table class="room"  border = 0px width=185 height=100  ">
+        <tr><td><b><a href="#">Room</a></b></td></tr>
+        <tr><td><a href="#">Create new rent offer</a></td></tr>
+        <tr> <td><a href="#">List my offers</a></td><tr>
+        <tr> <td><a href="#">List my rents</a></td><tr>
+    </table>
+     </td>
+     <td>
+    <table class="trade"  border = 0px width=185 height=100  ">
+        <tr><td><b><a href="#">Trade</a></b></td></tr>
+        <tr><td><a href="#">Create new offer</a></td></tr>
+        <tr><td><a href="#">List my offers</a></td></tr>
+        <tr> <td><a href="#">List my sales</a></td><tr>
+    </table>
+    </td>
+     <td>
+     <table class="contact"  border = 0px width=185 height=100  ">
+        <tr><td><b><a href="#">Contact</a></b></td></tr>
+        <tr><td><a href="#">Contact us</a></td></tr>
+        <tr> <td><a href="#">About us</a></td><tr>
+    </table>
+     </td>
+     </tr>
+ </table>
+<table class="copyright" style= "margin: 20px; font-size: 12px">
+     <tr style="margin: 5px; ">
+        <td >©Copyright 2013</td>
+        <td style="text-align: center">Software engineering for business applications</td>
+        <td style="text-align: right">Team : 26</td>
+        </table>
+
+    </div>
+    <br>
+        <br>
+    
+<div id="openModal" class="modalWindow">
+    <div>
+        <a href="#close" title="Close" class="close">Close</a><br>
+            <img src="/public/images/room.jpg" style="width: 600px; height: 350px;">
+                <br>
+<br>            
+            <table class="roomsdetails" style="margin: 10px;">
+                <tr>
+                    <td ><b>Description</b></td>
+                    <td style="text-align: left;">Dummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy text
+                    Dummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy textDummy text</td>
+                </tr>
+            </table>
+            <br>
+                        
+            
+    </div>
+</div>
+
+ <div class="rentofferform" style="margin-top: -720px; margin-left: 290px; border: 1px;" id="rentform_id" >
+ 
+  <table class= "formheader" id ="addNewRentiongOfferHeader" hidden ="YES">
+      <tr style="text-align: left; font-family: serif; font-size: 30px; color: #008000;">
+            <td > CREATE NEW RENT OFFER</td>
+      </tr>
+    </table>
+    <hr id="line" style="width: 940px; line-height: 2px; color: #008000"/>
+    
+    <table class = "newrentingOfferForm" id ="addNewRentiongOffer" width=937  hidden ="YES">
+             #{field 'rentoffer.headline'}
+    
+        <tr style="text-align: center; height: 65px">
+        
+            <td><input type="textbox" title="address" placeholder="Adresse of the room *" width="100" id="address"></td>
+            
+        </tr >
+          #{/field}
+         #{field 'rentoffer.pricePerNight'}
+        <tr style="text-align: center;height: 50px">
+            <td><input type="textbox" title="price" placeholder="Price per night in euro *" width="100" id="price"></td>
+        </tr>
+          #{/field}
+        #{field 'rentoffer.startDate'}
+        <tr style="text-align: center;height: 50px">
+             <td><input type="date" title="startingDate" placeholder="From *" width="100" id="Sdate"></td>
+        </tr>
+          #{/field}
+         #{field 'rentoffer.endDate'}
+        <tr style="text-align: center;height: 50px">
+            <td><input type="date" title="starDate" placeholder="until *" width="100" id="Edate"></td>
+        </tr>
+          #{/field}
+        #{field 'rentoffer.image'}
+         <tr style="text-align: center;height: 50px">
+            <td><input type="file" title="image" placeholder="Load an image of your room *" width="100" id="image"></td>
+        </tr>
+          #{/field}
+         <tr style="text-align: center;height: 50px">
+         #{field 'rentoffer.description'}
+            <td><input type="text" title="description" placeholder="Put a small description about your room" width="50" id="description"></td>
+        #{/field}
+        </tr>
+          <tr style="text-align: center;height: 50px">
+            <td><input type="submit" class="btn btn-success" value="Add" name="addrentoffer"/> <input type="button" class="btn btn-warning" value="Cancel"  /></td>
+        </tr>
+    </table>
+</div>
+    <br><br>
+  
+   
+    </body>
+    </html>

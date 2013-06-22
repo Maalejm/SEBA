@@ -1,0 +1,250 @@
+.nav{
+	
+	width: 1100px;
+	margin-top:10px;
+	
+}
+.navbar-inner {
+    filer: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #1874CD !important;
+   
+    
+
+}
+.navbar .nav > li > a {
+    
+    text-shadow: none !important;
+    color: #FFFFFF !important;
+    background: none !important;
+    padding-left: 35px !important;
+    padding-right: 50px !important;
+    
+   
+}
+.navbar .nav > li > a:hover {
+    color: #000000;
+}
+
+
+.bottom-menu{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color:  #1874CD;
+    color: #ffffff !important;
+    width: 100%;
+}
+
+
+.copyright{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color:  #E9EEF0;
+    
+    width: 100%;
+}
+
+.ads{
+    margin: 10px;
+    margin-left: 100px;
+}
+
+
+.discussion
+{
+    margin-left: 30px;
+}
+.room{
+    margin-left: 30px;
+}
+.trade{
+    margin-left: 30px;
+}
+.contact{
+    margin-left: 30px;
+}
+
+.imgBtn{
+float: left;
+position: relative;
+top: -2px;
+left: -6px;
+height: 21px;
+	
+	
+}
+.btn-float{
+	
+float: right;	
+	
+}
+
+
+
+BODY
+   {
+   font-family:Arial !important;
+   font-size: 16px !important;
+   }
+.navbar-inner {
+    filer: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #1874CD !important;
+   
+    
+
+}
+.navbar .nav > li > a {
+    
+    text-shadow: none !important;
+    color: #FFFFFF !important;
+    background: none !important;
+    padding-left: 35px !important;
+    padding-right: 50px !important;
+    
+   
+}
+.navbar .nav > li > a:hover {
+    color: #000000;
+}
+
+
+.cell td{
+        border:1;
+        padding: 3px;
+}
+
+.modalWindow {
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 99999;
+    opacity:0;
+    pointer-events: none;
+    text-align:center;
+}
+
+.modalWindow:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalWindow > div {
+    width: 600px;
+    height: 600px
+    position: relative;
+    margin: 70px auto;
+    background: #fff;
+}
+
+.close
+{
+    font-size: 13px;
+    padding: 5px
+}
+
+.serachtable {
+    border-radius: 10px 10px 10px 10px !important;
+    background-color: #B7CEEC;
+    margin-left: 20px !important;
+    
+}
+.breadcrump
+{
+     border-radius: 10px 10px 10px 10px !important;
+      background-color: #E5E4E2;
+      margin-left: 20px !important;
+      border: 1px;
+}
+.list{
+    width:250px !important;
+    text-shadow: none  !important;
+    background: none !important;
+    background-color: #F2F2F2 !important;
+    border-radius: 10px 10px 10px 10px !important ;
+    margin-top: 10px !important;
+    margin-left: 20px !important;
+    
+    
+}
+.list .nav-list > li > a{
+    color: #0000A0;
+    height:25px;
+    
+}
+.list .nav-list > li > a:hover{
+    color: #FFFFFF;
+    background-color: #0000A0;
+    
+}
+
+.bottom-menu{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color:  #E5E4E2;
+    width: 1215px;
+    color: #FFFFFF;
+}
+.copyright{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color:  #E9EEF0;
+    margin: 10px;
+    width: 1215px;
+}
+
+
+.ads{
+    margin: 10px;
+    margin-left: 100px;
+}
+.discussion
+{
+    margin-left: 30px;
+}
+.room{
+    margin-left: 30px;
+}
+.trade{
+    margin-left: 30px;
+}
+.contact{
+    margin-left: 30px;
+}
+.link:hover
+{
+    columns: #000000;
+}
+
+.hottopics
+{
+    width: 250px;
+    height: 455px;
+    background-color: #F2F2F2;
+    border-radius: 10px 10px 10px 10px !important;
+    margin-left: 20px !important;
+    margin-top: 20px !important;
+}
+.animation
+{
+    width: 250px;
+    height: 190px;
+    background-color: #F2F2F2;
+    
+    border-radius: 10px 10px 10px 10px !important;
+    margin-left: 20px !important;
+}
+.newrentingOfferForm
+{
+    border: 1px;
+    margin-left: 20px;
+}
+
+
+.rentoffers{
+    border: 1px;
+    margin-right: 10px;
+    margin-top: 20px;
+}

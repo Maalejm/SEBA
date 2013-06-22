@@ -1,0 +1,34 @@
+package controllers;
+
+import play.mvc.Controller;
+import models.RentOffer;
+import play.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.io.*;
+
+ 
+
+import play.mvc.*;
+import play.data.validation.*;
+import java.math.BigInteger;
+import java.util.*;
+
+public class RentOffers extends Controller{
+	
+	
+	 
+	 public static void createOffer(RentOffer rentoffer)
+	    {
+	    	System.out.println("adasdaaaaaaaaaa"+rentoffer.description);
+	    	 render();
+	    }
+	 
+	 public static void addNewOffer()
+	    {
+	    	 render();
+	    }
+
+}

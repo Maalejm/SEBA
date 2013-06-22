@@ -88,4 +88,138 @@
                dd{
                text-align: justify;
                }
+               
+        .maincont{
+       margin-left: 15px;
+margin-bottom: 10px;
+height: 500PX;
+}
+
+.maincont td{
+       vertical-align: top;
+       height: 50px;
+
+       }
+               
+               
+       .moduleAd{
+   border-radius: 10px !important;
+background-color: red;
+width: 300px;
+       }
+       
+       .moduleAd caption{
+  background-color: green;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+height: 29px;
+vertical-align: middle;
+color: wheat;
+font-size: 20px;
+padding-top: 10px;
+       }
+       
+        .moduleAd tr:nth-child(even) {background: #FFF}
+		.moduleAd tr:nth-child(odd) {background: #CCC}
+       
+        .moduleQ tr:nth-child(even) {background: #FFF}
+		.moduleQ tr:nth-child(odd) {background: #CCC}
+       
+        .moduleR tr:nth-child(even) {background: #FFF}
+		.moduleR tr:nth-child(odd) {background: #CCC}
+       
+        .moduleT tr:nth-child(even) {background: #FFF}
+		.moduleT tr:nth-child(odd) {background: #CCC}
+       
+  .moduleQ{
+   border-radius: 10px !important;
+background-color: CornflowerBlue ;
+width: 300px;
+       }
+       
+       .moduleQ caption{
+  background-color: CornflowerBlue ;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+height: 29px;
+vertical-align: middle;
+color: wheat;
+font-size: 20px;
+padding-top: 10px;
+       }
+       
+   
+       
+        .moduleR{
+   border-radius: 10px !important;
+background-color: DarkSeaGreen ;
+width: 300px;
+       }
+       
+       .moduleR caption{
+  background-color: DarkSeaGreen ;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+height: 29px;
+vertical-align: middle;
+color: wheat;
+font-size: 20px;
+padding-top: 10px;
+       }
+       
+
+       
+       
+        .moduleT{
+   border-radius: 10px !important;
+background-color: Fuchsia ;
+width: 300px;
+       }
+       
+       .moduleT caption{
+  background-color: Fuchsia ;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+height: 29px;
+vertical-align: middle;
+color: wheat;
+font-size: 20px;
+padding-top: 10px;
+       }
+       
+       .loginContent{
+       
+       margin-left: 500px;
+      padding-top: 70px;
+height: 440px;
+}
+       
+       
+       .loginsuc{
+       
+       color: green;
+font-size: 20px;
+height: 25px;
+background: linen;
+margin-left: 19px;
+margin-right: 17px;
+margin-bottom: 2px;
+       
+       }
+       
+       .rememeber{
+       
+       float: left;
+margin-right: 20px;
+}
+       
+       
+ cont22{
+ 
+ width: 90%;
+margin-top: 29px;
+ }
+       
+
+       
                              

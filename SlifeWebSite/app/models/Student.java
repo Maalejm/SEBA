@@ -47,11 +47,10 @@ public class Student extends Model {
 	private ArrayList<String> roles;
     
 	
-	public Student(String firstName, String lastName, String levelOfStudy, String university, String email,String dateOfBirth, String street, int postalCode, int phoneNumber, String passwordHash, String confirmationCode) {
+	public Student(String firstName, String lastName, String university, String email,String dateOfBirth, String street, int postalCode, int phoneNumber, String passwordHash, String confirmationCode) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.levelOfStudy = levelOfStudy;
 		this.university = university;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;

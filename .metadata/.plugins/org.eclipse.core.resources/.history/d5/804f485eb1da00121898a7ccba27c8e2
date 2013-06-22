@@ -1,0 +1,55 @@
+#{extends 'mainLayout.html' /}
+#{set title:'Home' /}
+
+
+ %{ if (confirm==1) {  }%
+                    <div class="success"> Registration completed Successfully , Please check your email to confirm registration </div>
+   %{}}%
+                    
+<table width="100%">
+  <tr>
+   <td>
+     <table border="1">
+     <caption>ADS</caption>
+     	#{list latestAds, as:'ad'}
+               <tr>
+                   
+                   <td>${ad.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table border="1">
+     <caption>Question ss</caption>
+     #{list latestQuestions, as:'q'}
+               <tr>
+                   
+                   <td>${q.question}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table border="1">
+     <caption>Rooms</caption>
+       #{list latestRooms, as:'r'}
+               <tr>
+                   <td>${r.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   
+   </td>
+   <td>
+	<table border="1">
+     <caption>Trade</caption>
+     #{list latestOffers, as:'o'}
+               <tr>
+                   <td>${o.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+  </tr>
+</table>
