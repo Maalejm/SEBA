@@ -1,0 +1,100 @@
+#{extends 'mainLayout.html' /}
+#{set title:'New Questions' /}
+
+
+#{jQueryValidate class:models.Question.class, key:'question' /}
+
+ <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(cat.id==1) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    
+                    <div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li><a href="/questions">Questions</a> <span class="divider">/</span></li>
+                        <li class="active">Create New Question</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        <button class="btn">List My Question</button>
+                    </div>
+                    
+                                        
+                                        
+                    
+                    #{form id:'addForm', method:'POST', action:@Questions.createQuestion() ,enctype:'multipart/form-data'}
+                        <fieldset>
+                            <legend>Create New Question</legend>
+                            <!-- #{ifErrors}
+								<div class="error">
+   									 <h2>Oops, please correct these errors</h2>
+								</div>
+							#{/ifErrors}
+ -->
+                              #{field 'question.category.id'}
+        						<div class="field">         
+            					<label for="${field.id}">Category * : </label>
+            					<select id="${field.id}"  name="${field.name}" class="span5 ${field.errorClass}" >
+                                
+                                #{list cats, as:'cat'} 
+                                <option value="${cat.id}">${cat.name}</option>
+                    		    #{/list}
+                          	  </select>
+                           		 
+						 	 </div>
+      					   #{/field}
+							
+                            
+                                      
+                             #{field 'question.question'}                              
+                            <label for="${field.id}" >Details *</label>
+                                <textarea rows="6"  id="${field.id}"   name="${field.name}" class="input_textarea ${field.errorClass}">${field.value}</textarea>
+                              
+                            #{/field} 
+                            
+                                  <br/>
+                                 
+                            
+                           
+                                  <div class="form-actions">
+                                      <input type="submit" class="btn btn-primary"/>
+                                      
+                                  </div>
+                        </fieldset>
+                    #{/form}
+                    
+                    
+                                                            
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>
+        
+        
+ 
+
