@@ -1,0 +1,46 @@
+#{extends 'SaleOffers/template.html' /}
+#{set title:'My Offers List' /}
+
+
+
+#{extends 'SaleOffers/template.html' /}
+#{set title:'My Sales List' /}
+
+
+
+
+
+                    
+        <div  id="result">
+                    
+            #{ifnot offers}
+    			<p>
+      			  No Offers Found
+    			</p>
+			   #{/ifnot}
+				#{else}
+                           <table class="table table-hover customSearchTable">
+                            <caption> You have ${offerCount} Offers </caption>
+           		#{list offers, as:'of'}
+               		<tr>
+                        <td class="img-cell">
+                           <img src="/public/img/trade/${of.image}"  class="img-polaroid img-scustom">
+                        </td>
+                           <td>${of.headline} </td>
+                           <td class="more_cell"><a class="btn" href="/saleOffer/viewOffer/${of.id}" >View <i class="icon-circle-arrow-right"></i></a></td>
+                           <td class="more_cell"><a class="btn" href="/saleOffer/deleteOffer/${of.id}" >Delete <i class="icon-circle-arrow-right"></i></a></td>
+                        </tr>
+           		#{/list}
+       
+   				</table> 
+   				
+   				
+				#{/else}
+                        
+				
+
+                        
+                   </div>
+                    
+           
+

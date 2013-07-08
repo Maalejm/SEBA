@@ -28,7 +28,7 @@ public class Ad extends Model {
     
     @Required
     public String address;
-    @Required
+    
     public String link;
     
     @Required

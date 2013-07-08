@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;SlifeWebSite/app/views/Application/myjson.html&apos; to &apos;myjson.js&apos;" description="Rename resource &apos;myjson.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="app/views/Application/myjson.html" name="myjson.js" stamp="1373058806724" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;SlifeWebSite/app/views/Application/myjson.js&apos; to &apos;myjson.json&apos;" description="Rename resource &apos;myjson.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="app/views/Application/myjson.js" name="myjson.json" stamp="1373064246440" updateReferences="true"/>
+</session>

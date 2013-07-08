@@ -33,7 +33,7 @@ public class RentOffers extends Controller{
 	
 	public static int getFontSize(int count,int min, int max){
 		
-		System.out.println(max+"======"+min);
+		
 		int fontsize=1;
 		
 		  float di=((max-min)/30);

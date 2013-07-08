@@ -1,0 +1,25 @@
+{
+    "message": "HellO",
+    "data": [
+    	{
+    	"accidentId": "1",
+        "accidentAlarmNo": "21 2nd Street",
+        "location": "New York",
+    	},
+    	{
+    	"accidentId": "1",
+        "accidentAlarmNo": "22 2nd Street",
+        "location": "New York"
+    	},
+    	{
+    	"accidentId": "1",
+        "accidentAlarmNo": "23 2nd Street",
+        "location": "New York"
+    	},
+    	{
+    	"accidentId": "1",
+        "accidentAlarmNo": "24 2nd Street",
+        "location": "New York"
+    	}
+    ]
+}

@@ -1,0 +1,44 @@
+#{extends 'SaleOffers/template.html' /}
+#{set title:'Trade Main Page' /}
+
+ %{ if (success==1) {  }% 
+                    <div class="success"> Your Offer successfully created</div>
+                    %{}}% 
+                    
+<div class="span10 tradesearchForm">                        
+	<fieldset>
+ 		<input name="search" class="span5" type="text" id="search"  placeholder="Search Offers" >
+			<select id="category" class="span3">
+     			<option value="0">All</option>
+				  #{list cats, as:'cat'} -->
+						<option value="${cat.id}">${cat.name}</option>
+				  #{/list} -->
+			</select>
+			<select id="sortBy" class="span3">
+     			<option value="3">Newest Product</option>
+     			<option value="1">Price (Lowest First)</option>
+     			<option value="2">Price (Highest First)</option>
+     			
+			</select>
+		<button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+	</fieldset>
+</div>
+
+
+
+<div  id="result">
+                    
+                        
+</div>
+
+
+        
+   <script type="text/javascript" charset="${_response_encoding}">
+        
+    
+        search()
+        
+  </script>       
+
+
+                    

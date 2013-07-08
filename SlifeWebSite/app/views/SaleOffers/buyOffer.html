@@ -1,0 +1,59 @@
+#{extends 'SaleOffers/template.html' /}
+#{set title:'Buy Offer' /}
+
+#{set title:'New Offer' /}
+                               
+                    
+                    #{form id:'addForm', method:'POST', action:@SaleOffers.processBuyOffer() ,enctype:'multipart/form-data'}
+                        <fieldset>
+                            <legend>Check Out</legend>
+ 
+                             
+						
+							#{field 'firstname'}
+                            <label for="${field.id}" class="newLable" >First Name *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span3 ${field.errorClass}" type="text" >
+                             
+                            #{/field}
+                            
+                          #{field 'lastname'}
+                            <label for="${field.id}" class="newLable"  >Last Name *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span3 ${field.errorClass}" type="text" >
+                             
+                            #{/field}
+                            
+                            #{field 'cardNo'}
+                            <label for="${field.id}" class="newLable"  >Card No *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span3 ${field.errorClass}" type="text" >
+                             
+                            #{/field}
+                            
+                            #{field 'expirDate'}
+                            <label for="${field.id}" class="newLable"  >Expire Date *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span3 ${field.errorClass}" type="text" >
+                             
+                            #{/field}
+                            #{field 'securityCode'}
+                            <label for="${field.id}" class="newLable"  >Security Code *</label>
+                             <input id="${field.id}" value="${field.value}"  name="${field.name}" class="span3 ${field.errorClass}" type="text" >
+                             
+                            #{/field}
+                            
+                            #{field 'ofid'}
+                            
+                             <input id="${field.id}" name="${field.name}" value="${id}" type="hidden"   >
+                             
+                            #{/field}
+                            
+                            
+                            
+                           
+                                  <div class="form-actions">
+                                      <input type="submit" value="Check Out" class="btn btn-primary"/>
+                                      
+                                  </div>
+                        </fieldset>
+                    #{/form}
+                    
+                    
+           

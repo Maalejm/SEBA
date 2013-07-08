@@ -29,11 +29,13 @@ public class SaleOffer extends Model {
     @Required
     public String description;
     
+    @Required
     public String image;
     
     @Required
     public float price;
     
+    @Required
     public int isSold;
     @ManyToOne
     public Student SoldBy;

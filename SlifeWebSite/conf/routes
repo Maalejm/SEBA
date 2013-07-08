@@ -4,14 +4,36 @@
 
 # Home page
 GET     /                                       Application.index
+GET 	/accidents									Application.accidents
+POST 	/accidents								Application.addjOSON
 
-GET     /ads                                       			  Ads.index
+GET     /ads                                       			   Ads.index
 GET     /ads/list                            				   Ads.list
 GET     /ads/newAd                                       	   Ads.newAd
 POST    /ads/createAd                                          Ads.createAd
-GET     /ads/{id}                                       	   Ads.index
+GET     /ads/deleteAd/{id}                                     Ads.deleteAd
 GET     /ads/viewAd/{id}                                       Ads.viewAd
+GET     /ads/myAds                                       	   Ads.myAds
+GET     /ads/{id}                                       	   Ads.index
 
+
+
+
+GET     /saleOffer                                       	   SaleOffers.index
+GET     /saleOffer/list                            			   SaleOffers.list
+GET     /saleOffer/newOffer                                    SaleOffers.newOffer
+GET     /saleOffer/search                                      SaleOffers.search
+POST    /saleOffer/createOffer                                 SaleOffers.createOffer
+GET     /saleOffer/viewOffer/{id}                              SaleOffers.viewOffer
+GET     /saleOffer/buyOffer/{id}                               SaleOffers.buyOffer
+POST    /saleOffer/processBuyOffer                             SaleOffers.processBuyOffer
+GET     /saleOffer/myOffers                                    SaleOffers.myOffers
+GET     /saleOffer/mySales                                     SaleOffers.mySales
+GET     /saleOffer/deleteOffer/{id}                            SaleOffers.deleteOffer
+
+
+
+GET     /saleOffer/{id}                                        SaleOffers.index
 
 GET     /rentoffer                                             RentOffers.index
 GET     /rentoffer/list                          			   RentOffers.list

@@ -20,8 +20,43 @@ public class Application extends Controller {
     }
     
     
+    public static void accidents(){
+    	
+    	render("Application/accidents.json");
+    }
+    
+ public static void addjOSON(){
+    	
+	System.out.println("<< new Entry >>");
+	
+    	
+    }
     
     
+    
+    
+    
+    public static boolean checkLogin(){
+		
+    	String username=session.get("username");
+    	        
+    	   if(username==null || username.equals("") )
+    		  return false;
+    	   
+         return true;
+    	} 
+    	
+    public static int getFontSize(int count,int min, int max){
+		int fontsize=1;
+        float di=((max-min)/30);
+		
+		if (di==0)
+			di=1;
+		
+		fontsize=(int) (10+(count-min)/di);
+		
+		return fontsize;
+	} 
     
     
 

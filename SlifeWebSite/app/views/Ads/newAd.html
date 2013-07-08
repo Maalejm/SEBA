@@ -39,12 +39,12 @@
                         <li><a href="/ads">Ads</a> <span class="divider">/</span></li>
                         <li class="active">Create New Ad</li>
                     </ul>
-                    
+                     %{ if(logedIn) {}%
                     <div class="btn-group">
-                        <button class="btn">List My Ads</button>
+                       <button class="btn"><a href="/ads/myAds">List My Ads</a></button>
                     </div>
                     
-                                        
+                     %{}}%                 
                                         
                     
                     #{form id:'addForm', method:'POST', action:@Ads.createAd() ,enctype:'multipart/form-data'}
@@ -80,7 +80,7 @@
                             #{/field}
                             
                             #{field 'ad.link'}
-                            <label for="${field.id}" >URL *</label>
+                            <label for="${field.id}" >URL </label>
                              <div class=" input-prepend">
                                     <span class="add-on">http://</span>
                              <input id="${field.id}" value="${field.value}"  name="${field.name}" class="input_text ${field.errorClass}" type="text" class="span5" placeholder="Type an address here">

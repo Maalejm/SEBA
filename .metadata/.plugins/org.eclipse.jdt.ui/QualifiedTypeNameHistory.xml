@@ -3,4 +3,7 @@
 <fullyQualifiedTypeName name="play.db.jpa.GenericModel.JPAQuery"/>
 <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
 <fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="controllers.casino.Secure"/>
+<fullyQualifiedTypeName name="models.SaleOffer"/>
+<fullyQualifiedTypeName name="controllers.Application"/>
 </qualifiedTypeNameHistroy>

@@ -11,6 +11,8 @@ import java.io.*;
 
 import play.mvc.*;
 import play.data.validation.*;
+import play.db.jpa.GenericModel.JPAQuery;
+
 import java.math.BigInteger;
 import java.util.*;
 
@@ -19,6 +21,8 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+
+import controllers.casino.Secure;
 
 
 
@@ -29,17 +33,7 @@ public class Ads  extends Application {
 	
 	
 	
-	public static int getFontSize(int count,int min, int max){
-		int fontsize=1;
-        float di=((max-min)/30);
-		
-		if (di==0)
-			di=1;
-		
-		fontsize=(int) (10+(count-min)/di);
-		
-		return fontsize;
-	} 
+	
  
 	
 	
@@ -55,12 +49,12 @@ public class Ads  extends Application {
 	        List<String> fonts=new ArrayList<String>();
 	        for (int i=0;i<bCounts.size();i++) {
 	     	   BigInteger count= bCounts.get(i);
-	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   int x= Application.getFontSize(count.intValue(),min,max);
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-	        
-	        render(ads,cats,fonts,min,max,success,id);
+	        boolean logedIn=Application.checkLogin();
+	        render(ads,cats,fonts,min,max,success,id,logedIn);
 	    }
 	 
 	 public static void newAd( ){
@@ -74,12 +68,12 @@ public class Ads  extends Application {
 	        List<String> fonts=new ArrayList<String>();
 	        for (int i=0;i<bCounts.size();i++) {
 	     	   BigInteger count= bCounts.get(i);
-	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   int x= Application.getFontSize(count.intValue(),min,max);
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-	        
-		 render(fonts,min,max,cats);
+	     boolean logedIn=Application.checkLogin();
+		 render(fonts,min,max,cats,logedIn);
 	 }
 	 
 	 public static void viewAd(String id){
@@ -95,12 +89,19 @@ public class Ads  extends Application {
 	        List<String> fonts=new ArrayList<String>();
 	        for (int i=0;i<bCounts.size();i++) {
 	     	   BigInteger count= bCounts.get(i);
-	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   int x= Application.getFontSize(count.intValue(),min,max);
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
+	        boolean logedIn=Application.checkLogin();
+		 render(ad,fonts,min,max,cats,logedIn);	
+	}
+	 
+	 public static void deleteAd(String id){
 			
-		 render(ad,fonts,min,max,cats);	
+		 Ad ad= Ad.findById(Long.parseLong(id));
+		 ad.delete();
+		 Ads.myAds();
 	}
 	 
 	 
@@ -148,7 +149,7 @@ public class Ads  extends Application {
 	        List<String> fonts=new ArrayList<String>();
 	        for (int i=0;i<bCounts.size();i++) {
 	     	   BigInteger count= bCounts.get(i);
-	     	   int x= Ads.getFontSize(count.intValue(),min,max);
+	     	   int x= Application.getFontSize(count.intValue(),min,max);
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
@@ -201,19 +202,99 @@ public class Ads  extends Application {
 	        }else if((page-firstPage)<=2){
 		           firstPage=page-7;
 		           lastPage=page+2;
-		           if(firstPage<1) {
-		        	   firstPage=1;
-		   	           lastPage=10;
-		           }
+		           
+		        	
+		        }
+	        if(firstPage<1) {
+	        	   firstPage=1;
+	   	           lastPage=10;
+	           }
+	        if(lastPage>pagesCount)
+	        	lastPage=pagesCount;
+	        boolean logedIn=Application.checkLogin();
+	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats,fonts,logedIn);
+	    }
+	 
+	 
+	 public static void myAds() {
+	        List<Ad> ads = null;
+	        
+	        
+	        Integer size=10;
+	        Integer page=1;
+	        int firstPage=1;
+	        int lastPage=10;
+	        
+	        List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
+	        
+	        EntityManager entityManager = play.db.jpa.JPA.em();
+	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by maxCount").getResultList();
+	        int min= bCounts.get(0).intValue();
+	        int max=bCounts.get(bCounts.size()-1).intValue();
+	        bCounts = entityManager.createNativeQuery("select count(*) as maxCount from Ad as a group by category_id order by category_id ").getResultList();
+	        List<String> fonts=new ArrayList<String>();
+	        for (int i=0;i<bCounts.size();i++) {
+	     	   BigInteger count= bCounts.get(i);
+	     	   int x= Application.getFontSize(count.intValue(),min,max);
+	     	   fonts.add(String.valueOf(x));
+	     	  
+	     	}
+	        
+	        int pagesCount=0;
+	        int adsCount=0;
+	       
+	        String username=session.get("username");
+	        
+	        if(username==null || username.equals("") )
+				try {
+					Secure.login();
+				} catch (Throwable e) {
+					
+					e.printStackTrace();
+				}
+	        
+	        Student s=(Student) Student.find("email",username).fetch(1).get(0);
+            Long userid=s.id;
+	        page = page != null ? page : 1;
+	        
+	        	Long l=null;
+	        	
+	        	
+	        ads = Ad.find("student_id=?  order by createDate desc",userid).fetch(page, size);
+		    l= Ad.count();
+	        	
+	            
+	            Long l2=(l/10);
+	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
+	            pagesCount=Integer.valueOf(l2.intValue());
+	            
+	            adsCount=Integer.valueOf(l.intValue());
+	        
+	        
+	        
+	        
+	        if((lastPage-page)<=2){
+	           firstPage=page-2;
+	           lastPage=page+7;
+	           if(lastPage > pagesCount) lastPage=pagesCount;
+	        	
+	        }else if((page-firstPage)<=2){
+		           firstPage=page-7;
+		           lastPage=page+2;
+		           
 		        	
 		        }
 	        
+	        if(firstPage<1) {
+	        	   firstPage=1;
+	   	           lastPage=10;
+	           }
+	        
 	        if(lastPage>pagesCount)
 	        	lastPage=pagesCount;
-	       
-	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats,fonts);
+	        boolean logedIn=Application.checkLogin();
+	        render(ads, adsCount, size, page,pagesCount,firstPage,lastPage,cats,fonts,username,logedIn);
 	    }
-	 
 	 public static void getImage(long id) {
   	   //final Ad ad = Ad.findById(id);
   	   //notFoundIfNull(ad);

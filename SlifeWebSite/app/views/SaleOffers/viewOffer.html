@@ -1,0 +1,37 @@
+#{extends 'SaleOffers/template.html' /}
+#{set title:'Offer Details' /}
+
+
+                    
+                     <fieldset>
+                            <legend>Offer Details</legend>
+                            <img src="/public/img/trade/${of.image}"  class="img-polaroid img-custom">
+                           
+                            <dl>
+                               <dt>Category</dt>
+ 							   <dd>${of.category.name}</dd>
+  							   <dt> Name</dt>
+ 							   <dd>${of.headline}</dd>
+ 							   <dt> Price</dt>
+ 							   <dd>${of.price}</dd>
+ 							   <dt>Details</dt>
+ 							   <dd>${of.description}</dd>
+ 							   <dt><br/><br/></dt>
+ 							   <dd><a class="btn moreBtn" href="/saleOffer/buyOffer/${of.id}" >
+ 							   		Buy Now <i class="icon-circle-arrow-right"></i>
+ 							   		</a>
+ 							   		<a class="btn moreBtn" href="/saleOffer/buyOffer/${of.id}" >
+ 							   		Add To cart <i class="icon-circle-arrow-right"></i>
+ 							   		</a>
+ 							   	</dd>
+ 							   
+							</dl>
+                     </fieldset>
+                    
+              
+                    
+      <script type="text/javascript" charset="${_response_encoding}">
+      
+      updateBreadCrumb("Offer Details")
+  </script>                  
+               

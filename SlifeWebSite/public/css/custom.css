@@ -15,12 +15,39 @@
                      height: 74px;
                      margin-top: 10px !important;
                      margin-left: 0px !important;
-                     width: 1031px !important;
+                     width: 1135px !important;
                    margin-bottom: 10px;
                     vertical-align: middle;
                  
                 }
                 
+                
+               .tradesearchForm {
+                   
+                    
+                    background-color: #B8DBFF;
+                    -moz-box-shadow: 0 0 6px 2px #b0b2ab;
+                    -webkit-box-shadow: 0 0 6px 2px #b0b2ab;
+                    box-shadow: 0 0 6px 2px #b0b2ab;
+                     padding-bottom: 20PX;
+                     padding-top: 20px;
+                     padding-left: 50px;
+                    -moz-border-radius: 5px 5px 0 0;
+                    -webkit-border-radius: 5px 5px 0 0;
+                    border-radius: 5px 5px 0 0;
+                    font-size: 20px;
+                     height: 74px;
+                     margin-top: 10px !important;
+                     margin-left: 0px !important;
+                     width: 1135px !important;
+                   margin-bottom: 10px;
+                    vertical-align: middle;
+                 
+                }
+                .tradesearchForm .btn{
+                
+                margin-top: -12px;
+                }
                 .customSearchTable{
                 
                 margin-left: 0px !important;
@@ -219,7 +246,62 @@ margin-right: 20px;
  width: 90%;
 margin-top: 29px;
  }
-       
+ 
+ .offerItem{
+width: 26%;
+float: left;
+border: 3px;
+border-color: lightblue;
+border-style: solid;
+margin-bottom: 20px;
+padding: 5px;
 
-       
-                             
+ }
+ .offerMargin{
+ margin-right: 95px
+ }
+ 
+ 
+ .clearpag{
+ clear:both;
+ }
+.tradeContent{
+margin-top: 10px
+}
+
+.offerImg{
+	
+	float: left;
+
+}
+
+.offerImg img{
+
+height: 100px;
+width: 100px;
+margin-right: 10px;
+}
+
+.salprice{
+	
+	font-weight: bold;
+text-align: center;
+height: 30PX;
+}
+.salName{
+	
+	font-weight: bold;
+text-align: center;
+height: 50PX;
+}
+
+.moreBtn{
+	
+	width: 151px;
+}
+.newLable{
+	width: 120px;
+
+
+}
+

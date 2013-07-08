@@ -1,0 +1,141 @@
+#{extends 'mainLayout.html' /}
+#{set title:'My Ads List' /}
+
+
+%{ out.print(username);}%
+
+<div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(id.equals(cat.id.toString())) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/ads/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/ads/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                        
+                   
+					<div>
+                      
+                    
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li><a href="/ads">Ads</a><span class="divider">/</span></li>
+                        <li class="active">My Ads</li>
+                    </ul>
+                     %{ if(logedIn) {}%
+                    <div class="btn-group">
+                        <button class="btn"><a href="/ads/myAds">List My Ads</a></button>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn"><a href="/ads/newAd">Create New Ad</a></button>
+                    </div>
+                    %{}}%
+                    %{ if (success==1) {  }%
+                    <div class="success"> Your ad successfully created</div>
+                    %{}}%
+                    
+                    <div  id="result">
+                    
+            #{ifnot ads}
+    			<p>
+      			  No Ads Found
+    			</p>
+			   #{/ifnot}
+				#{else}
+                           <table class="table table-hover customSearchTable">
+                            <caption> You have ${adsCount} Ads </caption>
+           		#{list ads, as:'ad'}
+               		<tr>
+                        <td class="img-cell">
+                           <img src="/public/img/ads/${ad.image}"  class="img-polaroid img-scustom">
+                        </td>
+                           <td>${ad.headline} </td>
+                           <td class="more_cell"><a class="btn" href="/ads/viewAd/${ad.id}" >View <i class="icon-circle-arrow-right"></i></a></td>
+                           <td class="more_cell"><a class="btn" href="/ads/deleteAd/${ad.id}" >Delete <i class="icon-circle-arrow-right"></i></a></td>
+                        </tr>
+           		#{/list}
+       
+   				</table> 
+   				
+   				<div class="pagination pagination-centered">
+                        <ul>
+                            %{ if(page==1) { }% 
+                            <li class="disabled"><a>Prev</a></li>
+                            %{ } else { }%
+                            <li><a id="prePage" href="${page-1};${firstPage};${lastPage}">Prev</a></li>
+                            %{ } }%
+                            
+                            %{
+                            
+                            	
+                            	for (int j=firstPage;j<=lastPage;j++){
+                            	
+                            }%
+                            
+                            %{ if(page==j) { }% 
+                            <li class="active"><a class="pagebtn" href="${j};${firstPage};${lastPage}">${j}</a></li>
+                            %{ } else { }%
+                            <li><a class="pagebtn" href="${j};${firstPage};${lastPage}">${j}</a></li>
+                            %{ } }%
+                            
+                            
+                            %{
+                             }
+                            }%
+                            
+                            %{ if(page==pagesCount) { }% 
+                            <li class="disabled"><a>Next</a></li>
+                            %{ } else { }%
+                            <li><a id="nextPage" href="${page+1};${firstPage};${lastPage}" >Next</a></li>
+                            %{ } }%
+                            
+                        
+                            
+                        </ul>
+                    </div>
+                    
+				#{/else}
+                        
+				
+
+                        
+                   </div>
+                    
+                                                            
+                    
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+
+
+
+
