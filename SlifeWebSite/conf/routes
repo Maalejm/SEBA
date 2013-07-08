@@ -13,12 +13,16 @@ GET     /ads/{id}                                       	   Ads.index
 GET     /ads/viewAd/{id}                                       Ads.viewAd
 
 
-GET     /questions                                       		Questions.index
-GET     /questions/list                            				Questions.list
+GET     /questions												Questions.index
+GET     /questions/list                           				Questions.list
 GET     /questions/newQuestion                                  Questions.newQuestion
+GET     /questions/newAnswer 	                                Questions.newAnswer
 POST    /questions/createQuestion                               Questions.createQuestion
+POST 	/questions/createAnswer                            		Questions.createAnswer
 GET     /questions/{id}                                       	Questions.index
 GET     /questions/viewQuestion/{id}                            Questions.viewQuestion
+GET     /questions/viewAnswer/{id}                            	Questions.viewAnswer
+
 
 
 

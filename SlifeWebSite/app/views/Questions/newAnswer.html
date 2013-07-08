@@ -1,5 +1,5 @@
 #{extends 'mainLayout.html' /}
-#{set title:'New Questions' /}
+#{set title:'New Answer' /}
 
 
 #{jQueryValidate class:models.Question.class, key:'question' /}
@@ -37,38 +37,28 @@
                     <ul class="breadcrumb">
                         <li><a href="/">Home</a> <span class="divider">/</span></li>
                         <li><a href="/questions">Questions</a> <span class="divider">/</span></li>
-                        <li class="active">Create New Question</li>
+                        <li class="active">Create New Answer</li>
                     </ul>
                     
-                   
+                  
+                                        
                                         
                     
                     #{form id:'addForm', method:'POST', action:@Questions.createQuestion() ,enctype:'multipart/form-data'}
                         <fieldset>
-                            <legend>Create New Question</legend>
+                            <legend>Create New Answer</legend>
                             <!-- #{ifErrors}
 								<div class="error">
    									 <h2>Oops, please correct these errors</h2>
 								</div>
 							#{/ifErrors}
  -->
-                              #{field 'question.category.id'}
-        						<div class="field">         
-            					<label for="${field.id}">Category * : </label>
-            					<select id="${field.id}"  name="${field.name}" class="span5 ${field.errorClass}" >
-                                
-                                #{list cats, as:'cat'} 
-                                <option value="${cat.id}">${cat.name}</option>
-                    		    #{/list}
-                          	  </select>
-                           		 
-						 	 </div>
-      					   #{/field}
+
 							
                             
                                       
-                             #{field 'question.question'}                              
-                            <label for="${field.id}" >Details *</label>
+                             #{field 'answer.answer'}                              
+                            <label for="${field.id}" >Answer *</label>
                                 <textarea rows="6"  id="${field.id}"   name="${field.name}" class="input_textarea ${field.errorClass}">${field.value}</textarea>
                               
                             #{/field} 

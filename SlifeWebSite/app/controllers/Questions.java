@@ -74,7 +74,7 @@ public class Questions  extends Application {
 	 
 	 public static void newQuestion( ){
 	
-		 List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
+		 List<Category> cats = Category.find("categorytype_id=?1","3").fetch();
 		 EntityManager entityManager = play.db.jpa.JPA.em();
 	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from question as a group by category_id order by maxCount").getResultList();
 	        int min= bCounts.get(0).intValue();
@@ -90,14 +90,19 @@ public class Questions  extends Application {
 	        
 		 render(fonts,min,max,cats);
 	
-
+	 }
+		 
+	 public static void newAnswer( ){
+				
+		render();
+		 
 	 
 	 }
 	 
 	 public static void viewQuestion(String id){
 		
 		 Question question= Question.findById(Long.parseLong(id));
-		 List<Category> cats = Category.find("categorytype_id=?1 order by id","1").fetch();
+		 List<Category> cats = Category.find("categorytype_id=?1 order by id","3").fetch();
 		 
 		 EntityManager entityManager = play.db.jpa.JPA.em();
 		 
@@ -112,11 +117,23 @@ public class Questions  extends Application {
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-			
-		 render(question,fonts,min,max,cats);	
+	        List<Answer> answers = null;
+			answers = Answer.find(" question_id=?1 order by id desc",question.id).fetch();
+		       
+		 render(question,fonts,min,max,cats,answers);	
 	
 	}
 	 
+	 
+	 public static void viewAnswer(String id){
+		 Answer answer= Answer.findById(Long.parseLong(id));
+		 Question question= Question.findById(answer.question.id); 
+		 
+		 
+		 render(answer,question);
+	 }
+	 
+
 	 
 	 public static void createQuestion(@Valid Question question,File photo) throws IOException{
 		
@@ -130,12 +147,18 @@ public class Questions  extends Application {
 		  
 	      
 	 }
+	 
+	 
+	
+	 
+	 
+	 
 	 public static void list(String search, int category, Integer size, Integer page, int firstPage, int lastPage) {
 	     
 		 
 		 List<Question> questions = null;
 	        
-	        List<Category> cats = Category.find("categorytype_id=?1","1").fetch();
+	        List<Category> cats = Category.find("categorytype_id=?1","3").fetch();
 	        
 	        EntityManager entityManager = play.db.jpa.JPA.em();
 	 	    List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from question as a group by category_id order by maxCount").getResultList();
