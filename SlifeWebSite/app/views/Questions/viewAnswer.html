@@ -1,5 +1,5 @@
 #{extends 'mainLayout.html' /}
-#{set title:'New Questions' /}
+#{set title:'Answer' /}
 
  <div class="container-fluid">
             <div class="row-fluid">
@@ -47,18 +47,20 @@
                     </div>
                   
                     <div class="btn-group">
-                        <button class="btn">Create New Answer</button>
+                        <button class="btn"><a href="/questions/newAnswer">Create New Answer</a></button>
                     </div>
                     
                     
                      <fieldset>
-                            <legend>Question Details</legend>
+                            <legend>Answer Details</legend>
                                                       
                             <dl>
                                <dt>Category</dt>
  							   <dd>${question.category.name}</dd>
+ 							   <br>
   						 	   <dt>Question</dt>
  							   <dd>${question.question}</dd>
+ 							   <br>
  							   <dt>Answer</dt>
  							   <dd>${answer.answer}</dd>
  							   

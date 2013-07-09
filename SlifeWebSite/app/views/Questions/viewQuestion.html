@@ -1,5 +1,5 @@
 #{extends 'mainLayout.html' /}
-#{set title:'New Questions' /}
+#{set title:'Questions' /}
 
  <div class="container-fluid">
             <div class="row-fluid">
@@ -56,6 +56,7 @@
                             <dl>
                                <dt>Category</dt>
  							   <dd>${question.category.name}</dd>
+ 							   <br>
   						 	   <dt>Question</dt>
  							   <dd>${question.question}</dd>
  														   
@@ -65,14 +66,22 @@
 							
 							<legend>Answers</legend>
 							
-							#{list answers, as:'answer'}
-                             
-                             <a href="/questions/viewAnswer/${answer.id}">
-                               ${answer.answer}</a>
-                      <br>
-                      
-                    #{/list}
 							
+							
+							
+							
+							<table class="table table-hover customSearchTable">
+                           
+       	    					#{list answers, as:'answer'}
+        		       				<tr>
+                		        		<td class="img-cell">
+                        			   		<img src="/public/img/questions/question.jpg"  class="img-polaroid img-scustom">
+                        				</td>
+                       		    		<td>${answer.answer} </td>
+                           				<td class="more_cell"><a class="btn" href="/questions/viewAnswer/${answer.id}" >More <i class="icon-circle-arrow-right"></i></a></td>
+                        			</tr>
+           						#{/list}
+       						</table> 
 							
 														
 							

@@ -39,6 +39,7 @@ public class Application extends Controller {
     public static boolean checkLogin(){
 		
     	String username=session.get("username");
+    
     	        
     	   if(username==null || username.equals("") )
     		  return false;

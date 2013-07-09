@@ -2,35 +2,15 @@
 #{set title:'New Answer' /}
 
 
-#{jQueryValidate class:models.Question.class, key:'question' /}
+#{jQueryValidate class:models.Answer.class, key:'answer' /}
 
  <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span2">
                     
-                    <ul class="nav nav-list">
-                        #{list cats, as:'cat'}
-                         <li
-                         %{ if(cat.id==1) { }%
-                          class="active"
-                         %{ } }%
-                         ><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></li>
-                        #{/list}
-                        
-                    </ul>
+                
                     
-                    <div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    
-                    %{ int i=0;}%
-                    #{list cats, as:'cat'}
-                       %{ String fsize=fonts[i];}%
-                       <span style="font-size:${fsize}px;"><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></span>
-                      %{ i++;}% 
-                    #{/list}
-                    </div>
+                
                     <!--Sidebar content-->
                 </div>
                 <div class="span10">
@@ -44,7 +24,7 @@
                                         
                                         
                     
-                    #{form id:'addForm', method:'POST', action:@Questions.createQuestion() ,enctype:'multipart/form-data'}
+                    #{form id:'addForm', method:'POST', action:@Questions.createAnswer() ,enctype:'multipart/form-data'}
                         <fieldset>
                             <legend>Create New Answer</legend>
                             <!-- #{ifErrors}

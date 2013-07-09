@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import java.awt.image.BufferedImage;
 import java.math.*;
-
+import java.io.*;
 @Entity
 public class Question extends Model {
 
