@@ -1,0 +1,432 @@
+<!-- #{extends 'mainLayout.html' /}
+#{set title:'My RentOffers List' /}
+
+
+
+
+<div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(id.equals(cat.id.toString())) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                        
+                   
+					<div>
+                      
+                    
+                    </div>
+                    Sidebar content
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li class="active">Rent Offer</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        <button class="btn">List My Rent Offers</button>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn"><a href="/rentoffer/newOffer">Create New Rent Offer</a></button>
+                    </div>
+                    %{ if (success==1) {  }%
+                    <div class="success"> Your Offer successfully created</div>
+                    %{}}%
+                    <div class="span10 searchForm">
+                        
+                            <fieldset>
+                                
+                                <input name="search" class="span7" type="text" id="search"  placeholder="Search Rent Offer" >
+                                    <select id="category" class="span3">
+                                        <option value="0">All</option>
+                                       
+                                        #{list cats, as:'cat'}
+                                        <option value="${cat.id}">${cat.name}</option>
+                                        #{/list}
+                                    </select>
+                                    
+                                    <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+                           </fieldset>
+                      
+                    </div>
+                    
+                    <div  id="result">
+                    
+                        
+				
+
+                        
+           </div>
+                    
+                                                            
+                    
+                    Body content
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+<script type="text/javascript" charset="${_response_encoding}">
+
+    // Rebuild state
+    
+    $('#search').val(sessvars.search)    
+    //if(sessvars.page == undefined) {
+        sessvars.page = 1
+    //}
+    
+    //if(sessvars.firstPage == undefined) {
+        sessvars.firstPage = 1
+    //}
+    
+    //if(sessvars.lastPage == undefined) {
+        sessvars.lastPage = 10
+    //}
+    
+    
+    // Search function
+    var search = function() {
+    	if($('.active .catNav').attr('href') != undefined)
+    		$('#category').val($('.active .catNav').attr('href').split("/")[2])
+        loadData($('#search').val(),$('#category').val(),10)
+        
+    }
+    
+    var loadData=function(search,category,size){
+    	
+    	
+    	sessvars.search = search
+        sessvars.category = category
+        sessvars.size =size //$('#size').val() 
+        var listAction = #{jsAction @listOf(':search',':category', ':size', ':page',':firstPage',':lastPage') /} 
+        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: sessvars.size,
+        	page: sessvars.page
+        	, firstPage: sessvars.firstPage, lastPage: sessvars.lastPage}), function() {
+           
+           
+        })
+    	
+    }
+    
+    // Events handler
+    $('#submit').click(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    $('#search').keyup(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    $('#category').change(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    
+    $('#nextPage').live('click', function(e) {
+
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('#prePage').live('click', function(e) {
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('.pagebtn').live('click', function(e) {
+        
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+        e.preventDefault()
+        search()        
+    })
+    
+    
+    $('.catNav').live('click', function(e) {
+        
+    	category=$(this).attr('href').split("/")[2]
+    	
+    	
+    	$('#category').val(category)
+    	
+    	sessvars.page =1
+        sessvars.firstPage=1
+        sessvars.lastPage=10
+        $('#search').val("") 
+        $('.catNav').parent().removeClass('active');
+        $(this).parent().addClass('active');
+    	e.preventDefault()
+    	
+       loadData("",category,10)       
+    })
+    
+    // Init
+    if(sessvars.search != undefined) {
+        search()
+        
+    }
+   
+</script>
+
+
+
+ -->
+ 
+ #{extends 'mainLayout.html' /}
+#{set title:'My room List' /}
+
+#{stylesheet '/public/css/main.css' /}
+
+        <script>
+
+        function openModal(teln, emailadd) {
+          
+            document.getElementById ("modalTelNumber").innerHTML=teln;
+            document.getElementById ("modalEmailAddress").innerHTML=emailadd;
+        }
+        </script>
+
+        <!--function getRoomPage ()
+        {
+            document.getElementById("rentoffers").style.display = 'block';
+            document.getElementById("RentOfferIsCurrent").style.color="#000000";
+            document.getElementById("RentOfferIsCurrent").style.fontWeight=200;
+            document.getElementById("addNewRentiongOfferHeader").style.display = 'none';
+            document.getElementById("addNewRentiongOffer").style.display = 'none';
+            document.getElementById("createNewOfferIsCurrent").style.display='none';
+            document.getElementById("line").style.display='none';
+            document.getElementById("pageNumbers").style.display='block';
+            document.getElementById("search-form").style.display='block';
+          
+        }
+        */
+     -->
+  
+
+ <!--<table class="breadcrump-table" width=937 style="background-color: #F2F2F2" height="30" >
+        <tr >
+        <td style=" border: 1; text-align: right; font-size: 14px; color: #0000A0;width: 40px"><a href="#" style="color: #000000;text-decoration: none"> Main</a></td>
+                <td style=" border: 1; text-align: left; font-size: 14px; color: #0000A0; width:60px"><a href="#" style="color: #0000A0; text-decoration: none"; id =RentOfferIsCurrent onclick="getRoomPage()"> > <b>Rooms </b></a></td>
+                <td><a href="#" style="color: #0000A0; text-decoration: none";  hidden="YES" id="createNewOfferIsCurrent"> > <b>Create new renting offer </b></a></td>
+        </tr>
+</table>-->
+
+<!-- div for loading the form of creating new offer -->
+
+
+<div class="left-side" >
+    <div class="categories"> 
+        <ul class="nav nav-list" id="category_list">
+             #{list roomCategoryList, as:'roomCategory'}
+            <li class="active"><li><a href="#" id= "categoryName">${roomCategory.name}</a></li>
+         #{/list} 
+        </ul>
+    </div>
+</div>
+ 
+
+   
+<div id="pageContainer" class ="pageContainer">
+<div class="buttons-menu">
+    <table class="buttons-menu-table">
+        <tr >
+            <td><button class="btn" >List my renting offers</button></td>
+            <td><button class="btn" id="newRentForm" ><i class="icon-plus"></i> Create new renting offer</button></td>
+            <td><button class="btn"> Search for rent offers</p></button></i></a></td>
+        </tr>
+    </table>
+</div>
+
+<!--<div class=rentoffers-serach>
+    
+     <table  class="rentoffers-serach-form">
+        <tr>
+            <td>From</td>
+            <td><input type="date"/></td>
+            <td>Until</td>
+            <td><input type="date"></td>
+            <td><input type="checkbox"></td>
+            <td>+/- 3 days</td>
+            <td><input type="submit" class="btn btn-success" value="Search" name="searchOffer"/></td>
+        </tr>
+    </table>
+</div>-->
+
+
+    
+<div class="rentoffers">
+    <table  class="rentoffers-table">
+     <tr>
+        %{
+        int inc=0;
+        int numberOfLine=0;
+       
+        int roomNumberForModalDisplay =0;
+        String ownerEmail;
+        String ownerPhone
+       }%
+        #{list roomListToSend, as:'room'}
+        %{
+          
+        if (numberOfLine<3 )
+        {
+        
+        inc = inc+1;
+        if (inc % 3 == 1 )
+        {
+        numberOfLine =numberOfLine+1;
+        }%
+        </tr>
+        %{
+        }
+        }%
+        <td style="width: 312px; height: 150px" align=center>
+            
+            <table  class="offer" border=1>
+              
+                <tr style="width: 612px; height: 50px" class= "cell">
+                    <td colspan="2">${room.address}</td>
+                </tr>
+                <tr class= "cell">
+                    <td class= "cell"  style=" vertical-align: top;width: 80px" ><img src="/public/images/room.jpg" style="width: 80px; height: 70px;"></td>
+                    <td>
+                        <table >
+                            <tr >
+                                <td colspan="4" style=" vertical-align: top;width: 120px " ><b >${room.pricePerNight} euro</b></style><br> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;" colspan="2"><b>From</b></td><td style="text-align: center;">${room.startDate}</td   
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;" colspan="2"><b>Until</b></td><td>${room.endDate}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class= "cell" >
+                    <td colspan="2">${room.description}</td>
+                </tr>
+                 <tr class= "cell" >
+                    <td colspan="2" style="text-align: right;"><a href="#openModal" style="text-decoration: none;
+                    color: #008000; padding: 10px" onclick="openModal('${room.ownerPhoneNumber}','${room.ownerEmailAddress}')"> <b>details</b></a></td>
+                </tr>
+            </table>
+        </td> 
+    %{
+    }
+    roomNumberForModalDisplay =roomNumberForModalDisplay+1;
+    }%
+ 
+    #{/list} 
+    </tr>
+</table>
+</div>
+
+
+    %{
+    if ( numberOfPageNeeded >0)
+    {
+    }%
+    
+<div class="pagination">
+<table width="1020">
+    <tr><td>
+    <ul>
+    %{
+    for (int j =1 ; j< numberOfPageNeeded+2 ; j++)
+    {
+    }%
+    <li><a href="/Rooms/index/${j-1}" id= "pageNumber" value= %{out.print j;}% >%{out.print j;}%</a></li>
+    {%
+    }
+    %}
+    </ul>
+</td></tr></table>
+</div>
+    %{
+    }
+    }%
+ 
+<div id="openModal" class="modalWindow">
+    <div>
+        <a href="#close" title="Close" class="close">Close</a><br>
+            <img src="/public/images/room.jpg">
+                <br>
+                <br>            
+            <table class="roomsdetails" style="margin: 10px;">
+                <tr height= "30px" >
+                    <td ><b>Owner email address : </b></td>
+                    <td style="text-align: left;" > <div id="modalEmailAddress"></div></td>
+                </tr>
+                <tr height=" 30px">
+                    <td ><b>Owner phone number : </b></td>
+                    <td style="text-align: left;"> </div><div id="modalTelNumber"></td>
+                </tr>
+            </table>
+            <br>
+                        
+            
+    </div>
+</div>
+</div>
+
+ <script type="text/javascript">
+      
+      // load form of creating new renting offer : jquery load
+    var loadData=function(){
+      
+        var listAction = #{jsAction @newOffer() /}
+          
+        $('#pageContainer').load(
+        listAction(), function (){});
+        
+    }       
+    $('#newRentForm').click(function() {
+           loadData ()     
+    })
+
+    
+    
+</script>

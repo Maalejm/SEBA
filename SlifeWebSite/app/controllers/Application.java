@@ -20,20 +20,20 @@ public class Application extends Controller {
     }
     
     
-    public static void accidents(){
+   
+public static void aboutus() {
     	
-    	render("Application/accidents.json");
+    	
+        render();
     }
-    
- public static void addjOSON(){
-    	
-	System.out.println("<< new Entry >>");
-	
-    	
-    }
-    
-    
-    
+
+
+public static void contactus() {
+ 	
+ 	
+     render();
+ }
+
     
     
     public static boolean checkLogin(){

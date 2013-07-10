@@ -1,0 +1,68 @@
+#{extends 'mainLayout.html' /}
+<script type="text/javascript">
+function validate()
+{
+ 
+ var name = document.myForm.Name;  
+var email = document.myForm.email;
+ 
+if(name_validation(name))  
+{  
+if(ValidateEmail(email))  
+{  
+}  
+}  
+return false;  
+} 
+
+function name_validation(name){
+ 
+   if( document.myForm.Name.value == "" )
+   {
+     alert( "Please provide your name!" );
+     document.myForm.Name.focus() ;
+     return false;
+   }
+   return true;
+ }
+
+function ValidateEmail(email)  
+{  
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+if(email.value.match(mailformat))  
+{  
+return true;  
+}  
+else  
+{  
+alert("You have entered an invalid email address!");  
+email.focus();  
+return false;  
+}  
+}
+
+</script>
+
+<article class="col-2">
+              <h2>Contact Form</h2>
+              <form id="contacts-form" name="myForm" action="#"  onsubmit="return(validate());" >
+                <fieldset>
+                  <div class="field text">
+                    <label>Your Name:</label>
+                    <input type="text" style="width: 500px;" name="Name">
+                  </div>
+                  <div class="field text">
+                    <label>Your E-mail<ss style="color:#FF0000;">*</ss>:</label>
+                    <input type="text" style="width: 500px;" name="email">
+                  </div>
+                  <div class="field">
+                    <label>Your Message:</label>
+                    <textarea style="width: 500px;
+height: 150px;"></textarea>
+                  </div>
+                 <div class="alignright"><a href="#" class="btn btn-primary" onClick="document.getElementById('contacts-form').reset()"><span>
+                 <span>Clear</span></span>
+                 </a><a href="#" class="btn btn-primary"  onclick="validate()"><span><span>Send</span></span></a></div>
+                </fieldset>
+              </form>
+            </article>

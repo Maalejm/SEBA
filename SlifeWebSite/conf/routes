@@ -4,8 +4,8 @@
 
 # Home page
 GET     /                                       Application.index
-GET 	/accidents									Application.accidents
-POST 	/accidents								Application.addjOSON
+GET 	/aboutus									Application.aboutus
+GET 	/contactus								Application.contactus
 
 GET     /ads                                       			   Ads.index
 GET     /ads/list                            				   Ads.list
