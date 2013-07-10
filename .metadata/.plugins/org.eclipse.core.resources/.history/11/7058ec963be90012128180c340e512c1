@@ -1,0 +1,96 @@
+#{extends 'mainLayout.html' /}
+#{set title:'Questions' /}
+
+ <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(cat.id==3) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    
+                    <div>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/questions/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                    
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li><a href="/questions">Questions</a> <span class="divider">/</span></li>
+                        <li class="active">Question Details</li>
+                    </ul>
+                    
+                          %{ if(logedIn) { }%               
+                     <div class="btn-group">
+                        <button class="btn"><a href="/questions/newQuestion">Create New Question</a></button>
+                    </div>
+                  
+                     <div class="btn-group">
+                        <button class="btn"><a href="/questions/newAnswer/${question.id}">Create New Answer</a></button>
+                    </div>
+                  
+                     %{ } }%   
+                     <fieldset>
+                            <legend>Question Details</legend>
+                                                      
+                            <dl>
+                               <dt>Category</dt>
+ 							   <dd>${question.category.name}</dd>
+ 							   <br>
+  						 	   <dt>Question</dt>
+ 							   <dd>${question.question}</dd>
+ 														   
+ 						
+							</dl>
+							
+							
+							<legend>Answers</legend>
+							
+							
+							
+							
+							
+							<table class="table table-hover customSearchTable">
+                           
+       	    					#{list answers, as:'answer'}
+        		       				<tr>
+                		        		<td class="img-cell">
+                        			   		<img src="/public/img/questions/question.jpg"  class="img-polaroid img-scustom">
+                        				</td>
+                       		    		<td>${answer.answer} </td>
+                           				<td class="more_cell"><a class="btn" href="/questions/viewAnswer/${answer.id}" >More <i class="icon-circle-arrow-right"></i></a></td>
+                        			</tr>
+           						#{/list}
+       						</table> 
+							
+														
+							
+                     </fieldset>
+                    
+              
+                    
+                    
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>

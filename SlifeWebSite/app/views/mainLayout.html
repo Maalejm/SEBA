@@ -29,11 +29,16 @@
     <body>
      <div>
      
-     <div class="container" style="width:100%" >
+     <div class="container" style="width:100%; height: 151px;" >
 <div class ="navbar" >
+<div class="logo">
+<img class="logo-img" src="/public/img/logo.png" />
+
+</div>
   <div class="navbar-inner" >
+  
    <ul class="nav">
-        <li style="width:200px"><a href="/"> SLife</b></a></li>
+        
         <li><a href="/ads">  <img src="/public/img/ads.png" height=18px width=18px style="padding-right: 4px;"/>ads</a></li>
         <li><a href="/questions">  <img src="/public/img/discussion.png" height=20px width=20px style="padding-right: 4px;"/>discussion</a></li>
         <li><a href="/rentoffer">  <img src="/public/img/rentroom.png" height=20px width=20px style="padding-right: 4px;"/>room</a></li>
@@ -68,6 +73,12 @@
       %{ } }%
     
     </ul>
+    
+    <div >
+<img class="logo-img" style="height: 97px;
+width: 1110px;" src="/public/img/logo2.png" />
+
+</div>
   </div>
 </div>
 </div>
@@ -95,7 +106,7 @@
      <td>
      <table class="room"  border = 0px width=185 height=100  ">
         <tr><td><b><a href="#">Room</a></b></td></tr>
-        <tr><td><a href="#">Create new rent offer</a></td></tr>
+        <tr><td><a href="/rentoffer/newOffer">Create new rent offer</a></td></tr>
         <tr> <td><a href="#">List my offers</a></td><tr>
         <tr> <td><a href="#">List my rents</a></td><tr>
     </table>
@@ -103,9 +114,9 @@
      <td>
     <table class="trade"  border = 0px width=185 height=100  ">
         <tr><td><b><a href="#">Trade</a></b></td></tr>
-        <tr><td><a href="#">Create new offer</a></td></tr>
-        <tr><td><a href="#">List my offers</a></td></tr>
-        <tr> <td><a href="#">List my sales</a></td><tr>
+        <tr><td><a href="/saleOffer/newOffer">Create new offer</a></td></tr>
+        <tr><td><a href="/saleOffer/myOffers">List my offers</a></td></tr>
+        <tr> <td><a href="/saleOffer/mySales ">List my sales</a></td><tr>
     </table>
     </td>
      <td>

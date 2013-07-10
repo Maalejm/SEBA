@@ -65,8 +65,8 @@ public class RentOffers extends Controller{
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-	        
-	        render(offers,cats,fonts,min,max,success,id);
+	        boolean logedIn=Application.checkLogin();
+	        render(offers,cats,fonts,min,max,success,logedIn, id);
 	    }
 	 
 	 public static void newOffer( ){
@@ -84,8 +84,8 @@ public class RentOffers extends Controller{
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-	        
-		 render(fonts,min,max,cats);
+	        boolean logedIn=Application.checkLogin();
+		 render(fonts,min,max,cats,logedIn);
 	 }
 	 
 	 public static void viewOffer(String id){
@@ -105,8 +105,8 @@ public class RentOffers extends Controller{
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-			
-		 render(of,fonts,min,max,cats);	
+	        boolean logedIn=Application.checkLogin();
+		 render(of,fonts,min,max,cats,logedIn);	
 	}
 	 
 	 
@@ -144,8 +144,17 @@ public class RentOffers extends Controller{
 		  
 	      
 	 }
-	 public static void listOf(String search, int category, Integer size, Integer page, int firstPage, int lastPage) {
-	        List<RentOffer> offers = null;
+	 public static void listOf( String fromDate,String toDate,int category, Integer size, Integer page, int firstPage, int lastPage) {
+	       
+		  
+		   boolean range=false;
+		   
+		   
+		   if(fromDate==null)fromDate="";
+		   if(toDate==null)toDate="";
+		   if(size==null)size=10;
+		 
+		    List<RentOffer> offers = null;
 	        
 	        List<Category> cats = Category.find("categorytype_id=?1","2").fetch();
 	        
@@ -163,45 +172,91 @@ public class RentOffers extends Controller{
 	     	}
 	        
 	        int pagesCount=0;
+	        int offersCount=0;
 
 	        page = page != null ? page : 1;
-	        if(search.trim().length() == 0) {
+	        
+	        String sec="1";
+	        
+	        if(fromDate.trim().length() == 0 && toDate.trim().length() == 0) {
+	        	
+//	        	System.out.prinln("HiAll i am here");
 	        	Long l=null;
 	        	if(category==0){
-	        	
+	        	    
 	        		offers = RentOffer.find("order by id desc").fetch(page, size);
 		            l= RentOffer.count();
+		            sec="2";
 	        	}else{
-	        		
+	        		sec="3";
 		        
 		            offers = RentOffer.find(" category_id=?1 order by id desc",category).fetch(page, size);
 		            l= RentOffer.count(" category_id=?1 ",category);
 	        		
 	        	}
-	            
+	        	offersCount=Integer.valueOf(l.intValue());
 	            Long l2=(l/10);
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
 	            
-	        } else {
-	            search = search.toLowerCase();
+	        } else if (fromDate.trim().length()==0) {
+	            
 	            Long l= null;
 	            if(category==0){
-	            offers = RentOffer.find("(lower(headline) like ?1 OR lower(description) like ?2)", "%"+search+"%", "%"+search+"%").fetch(page, size);
-	            l= RentOffer.count("(lower(headline) like ?1 OR lower(description) like ?2)", "%"+search+"%", "%"+search+"%");
+	            	sec="4";
+	            offers = RentOffer.find(" endDate <= ?", ""+toDate+"").fetch(page, size);
+	            l= RentOffer.count(" endDate <= ?", ""+toDate+"");
 	            }else {
-	            offers = RentOffer.find(" category_id=?1 and (lower(headline) like ?2 OR lower(description) like ?3)",category, "%"+search+"%", "%"+search+"%").fetch(page, size);
-	            l= RentOffer.count("category_id=?1 and (lower(headline) like ?2 OR lower(description) like ?3)",category, "%"+search+"%", "%"+search+"%");
+	            	sec="5";
+	            offers = RentOffer.find(" category_id=?1 and (endDate <= ?)",category, ""+toDate+"").fetch(page, size);
+	            l= RentOffer.count(" category_id=?1 and (category_id=?1 and (endDate <= ?))",category, ""+toDate+"");
 	             }
 	            
 	            Long l2=(l/10);
+	            offersCount=Integer.valueOf(l.intValue());
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
+	            
+	        }else if (toDate.trim().length()==0) {
+	           
+	        	 Long l= null;
+		            if(category==0){
+		            	sec="5";
+		            offers = RentOffer.find(" startDate >= ?", ""+fromDate+"").fetch(page, size);
+		            l= RentOffer.count(" startDate >= ?", ""+fromDate+"");
+		            }else {
+		            	sec="6";
+		            offers = RentOffer.find(" category_id=?1 and (startDate <= ?)",category, ""+fromDate+"").fetch(page, size);
+		            l= RentOffer.count(" category_id=?1 and (startDate <= ?)",category, ""+fromDate+"");
+		             }
+		            
+		            Long l2=(l/10);
+		            offersCount=Integer.valueOf(l.intValue());
+		            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
+		            pagesCount=Integer.valueOf(l2.intValue());
+	            
+	        }else  {
+	           
+	        	 Long l= null;
+		            if(category==0){
+		            	sec="7";
+		            offers = RentOffer.find(" startDate >= ?1 and endDate<=?2", ""+fromDate+"",""+toDate+"").fetch(page, size);
+		            l= RentOffer.count(" startDate >= ?1 and endDate<=?2", ""+fromDate+"",""+toDate+"");
+		            }else {
+		            	sec="8";
+		            offers = RentOffer.find(" category_id=?1 and (startDate <= ?2 and endDate<=?3)",category, ""+fromDate+"", ""+toDate+"").fetch(page, size);
+		            l= RentOffer.count(" category_id=?1 and (startDate <= ?2  and endDate<=?3)",category, ""+fromDate+"", ""+toDate+"");
+		             }
+		            
+		            Long l2=(l/10);
+		            offersCount=Integer.valueOf(l.intValue());
+		            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
+		            pagesCount=Integer.valueOf(l2.intValue());
 	            
 	        }
 	        
 	        
-	        
+	        System.out.print("Sen invt ==>"+sec);
 	        if((lastPage-page)<=2){
 	           firstPage=page-2;
 	           lastPage=page+7;
@@ -219,8 +274,8 @@ public class RentOffers extends Controller{
 	        
 	        if(lastPage>pagesCount)
 	        	lastPage=pagesCount;
-	       
-	        render(offers, search, size, page,pagesCount,firstPage,lastPage,cats,fonts);
+	        boolean logedIn=Application.checkLogin();
+	        render(logedIn, offers, size, page,pagesCount,firstPage,lastPage,cats,fonts,offersCount);
 	    }
 	 
 	 

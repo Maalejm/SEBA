@@ -1,0 +1,238 @@
+ .navbar-inner {
+
+    margin-top: 10px;
+    display: inline-block;
+    height: 40px;
+    width: 1102px;
+    border-radius: 10px 10px 10px 10px !important;
+    
+}
+
+.logo{
+	
+	display: inline-block;
+	height: 123px;
+	
+}
+
+.navbar .nav > li > a {
+    
+    text-shadow: none !important;
+    color: #FFFFFF !important;
+    background: none !important;
+    padding-left: 45px !important;
+    padding-right: 50px !important;
+    
+   
+}
+.navbar .nav > li > a:hover {
+    color: #000000;
+}
+.nav img{
+    height :20px;
+    width :20px;
+    padding-right: 4px;
+}
+
+.left-side
+{
+    width: 250px;
+    height: 600px;
+    background-color: #F2F2F2;
+    margin-left: 10px;
+    border-radius: 10px 10px 10px 10px !important;
+    float: left;
+    margin-top: 20px;
+
+}
+.categories
+{
+    width: 220px;
+    height: 250px;
+    margin-top: 50px;
+    margin-left: 10px;
+    
+}
+
+.bottom-menu{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color: #F2F2F2;
+    margin-left: 10px;
+     margin-top: 10px;
+    width: 1235px;
+    height: 110px;
+    float: left;
+}
+.copyright{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color:  #E9EEF0;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 1235px;
+    float: left;
+}
+
+.copyright-table td
+{
+    width: 420px;
+    font-size: 12px;
+}
+
+End of the main layout
+
+Room page layout
+.breadcrump
+{
+    margin-top: 70px;
+    margin-right: 30px;
+    width: 980px;
+    float: right;
+   
+}
+
+.buttons-menu
+{
+    width: 980px;
+    float: right;
+    margin-right: 30px;
+}
+.buttons-menu-table button{
+    
+    padding-left: 50px;
+}
+.buttons-menu-table td{
+        border:1px;
+        padding-left: 80px;
+}
+
+
+.rentoffers
+{
+    
+    float: right;
+    margin-right: 38px;
+    margin-top: 20px;
+
+     
+}
+.offer
+{
+
+    width: 320px;
+    height: 200px;
+    border:1px;
+
+}
+.pagination
+{
+    /* float: right; */
+    text-align: center;
+   
+}
+
+Modal layout : details of a room
+.modalWindow {
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 99999;
+    opacity:0;
+    pointer-events: none;
+    text-align:center;
+}
+
+.modalWindow:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalWindow > div {
+    width: 550px;
+    height: 450px
+    position: relative;
+    margin: 70px auto;
+    background: #fff;
+}
+modalWindow src{
+    width: 650px;
+    height: 400px;
+}
+
+.close
+{
+    font-size: 13px;
+    padding: 5px
+}
+
+End modal layout
+
+.serachtable {
+ 
+    border-color: #E9EEF0;
+    border-radius: 10px 10px 10px 10px !important;
+      background-color: #FFFFFF;
+    
+}
+.ads{
+    margin: 10px;
+    margin-left: 100px;
+}
+.discussion
+{
+    margin-left: 30px;
+}
+.room{
+    margin-left: 30px;
+}
+.trade{
+    margin-left: 30px;
+}
+.contact{
+    margin-left: 30px;
+}
+.link:hover
+{
+    columns: #FFFFFF;
+}
+A:link {text-decoration: none}
+A:visited {text-decoration: none}
+A:active {text-decoration: none}
+A:hover {text-decoration: none}
+
+.hottopics
+{
+    width: 250px;
+    height: 465px;
+    background-color: #F2F2F2;
+    margin: 10px;
+    border-radius: 10px 10px 10px 10px !important;
+}
+
+.errorMessage
+{
+    border-radius: 10px 10px 10px 10px !important;
+    background-color: #FF0040;
+}
+.formLabel
+{
+    width: 120px;
+}
+.rentofferform
+{
+    width: 980px;
+    float: right;
+    margin-right: 30px;
+} 
+
+
+.rentoffers-serach-form
+{
+    width: 980px;
+   /*  background-color:#F2F2F2; */
+   /*  margin-top: 20px; */
+}
+.rentoffers-serach-form td{
+    padding-left: 15px;   
+}

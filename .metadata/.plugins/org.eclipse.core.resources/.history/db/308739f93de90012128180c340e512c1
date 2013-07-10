@@ -1,0 +1,69 @@
+#{extends 'mainLayout.html' /}
+#{set title:'Home' /}
+
+
+ %{ if (confirm==1) {  }%
+                    <div class="loginsuc"> Registration completed Successfully , Please check your email to confirm registration </div>
+   %{}}%
+       
+<div class="maincont">                    
+<table  width="100%">
+  <tr>
+   <td>
+     <table class="moduleAd" border="0">
+     <caption>ADS</caption>
+     	#{list latestAds, as:'ad'}
+               <tr>
+                   <td class="img-cell">
+                           <img src="/public/img/ads/${ad.image}"  class="img-polaroid img-scustom">
+                   </td>
+                   <td><a href="/ads/viewAd/${ad.id}">${ad.headline}</a></td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table class="moduleQ" border="0">
+     <caption>Question</caption>
+     #{list latestQuestions, as:'question'}
+    
+               <tr>
+                   <td class="img-cell">
+                           <img src="/public/img/question-mark.jpg"  class="img-polaroid img-scustom">
+                   </td>
+                   <td><a href="/questions/viewQuestion/${question.id}">${question.category.name}<br>${question.question}</a></td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+   <td>
+     <table class="moduleR" border="0">
+     <caption>Rooms</caption>
+       #{list latestRooms, as:'r'}
+               <tr>
+               <td class="img-cell">
+                           <img src="/public/img/rooms/${r.image}"  class="img-polaroid img-scustom">
+                 </td>
+                   <td><a href="/rentoffer/viewOffer/${r.id}">${r.headline}</a></td>
+               </tr>
+           #{/list}
+     </table>
+   
+   </td>
+   <td>
+	<table class="moduleT" border="0">
+     <caption>Trade</caption>
+     #{list latestOffers, as:'o'}
+               <tr>
+                <td class="img-cell">
+                           <img src="/public/img/trade/trade.jpeg"  class="img-polaroid img-scustom">
+                 </td>
+                   <td><a href="/saleOffer/viewOffer/${r.id}">${o.headline}</td>
+               </tr>
+           #{/list}
+     </table>
+   </td>
+  </tr>
+</table>
+
+</div>

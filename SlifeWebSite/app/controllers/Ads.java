@@ -155,6 +155,7 @@ public class Ads  extends Application {
 	     	}
 	        
 	        int pagesCount=0;
+	        int adCount=0;
 
 	        page = page != null ? page : 1;
 	        if(search.trim().length() == 0) {
@@ -172,6 +173,8 @@ public class Ads  extends Application {
 	        	}
 	            
 	            Long l2=(l/10);
+	            
+	            adCount=Integer.valueOf(l.intValue());
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
 	            
@@ -187,6 +190,7 @@ public class Ads  extends Application {
 	             }
 	            
 	            Long l2=(l/10);
+	            adCount=Integer.valueOf(l.intValue());
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
 	            
@@ -212,7 +216,7 @@ public class Ads  extends Application {
 	        if(lastPage>pagesCount)
 	        	lastPage=pagesCount;
 	        boolean logedIn=Application.checkLogin();
-	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats,fonts,logedIn);
+	        render(ads, search, size, page,pagesCount,firstPage,lastPage,cats,fonts,logedIn,adCount);
 	    }
 	 
 	 
@@ -261,7 +265,7 @@ public class Ads  extends Application {
 	        	
 	        	
 	        ads = Ad.find("student_id=?  order by createDate desc",userid).fetch(page, size);
-		    l= Ad.count();
+		    l= Ad.count("student_id=?  order by createDate desc",userid);
 	        	
 	            
 	            Long l2=(l/10);

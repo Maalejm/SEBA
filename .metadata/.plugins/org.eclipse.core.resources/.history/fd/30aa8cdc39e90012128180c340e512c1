@@ -1,0 +1,79 @@
+<!-- #{extends 'mainLayout.html' /}
+#{set title:'View Offer' /}
+ -->
+ <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(cat.id==1) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    
+                    <div>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                    
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li><a href="/rentoffer">Rent Offers</a> <span class="divider">/</span></li>
+                        <li class="active">Rent Offer Details</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        <button class="btn">List My Offers</button>
+                    </div>
+                    
+                     <div class="btn-group">
+                        <button class="btn"><a href="/rentoffer/newOffer">Create New Ad</a></button>
+                    </div>
+                  
+                    
+                     <fieldset>
+                            <legend>Offer Details</legend>
+                            <img src="/public/img/rooms/${of.image}"  class="img-polaroid img-custom">
+                           
+                            <dl>
+                               <dt>Category</dt>
+ 							   <dd>${of.category.name}</dd>
+  							   <dt> Head line</dt>
+ 							   <dd>${of.headline}</dd>
+ 							   <dt> From Date</dt>
+ 							   <dd>${of.startDate}</dd>
+ 							   <dt>To Date</dt>
+ 							   <dd>${of.endDate}</dd>
+ 							   <dt>Price Per Night</dt>
+ 							   <dd>${of.pricePerNight}</dd>
+ 							   <dt>Details</dt>
+ 							   <dd>${of.description}</dd>
+ 							   
+							</dl>
+                     </fieldset>
+                    
+              
+                    
+                    
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>

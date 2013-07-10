@@ -1,0 +1,108 @@
+#{ifnot offers }
+    			<p>
+      			  No Offers Found
+    			</p>
+			   #{/ifnot}
+				#{else}
+                 
+           		
+           		<div>
+   		 		 	<div class="Caption"> About ${offersCount}  Search Result found </div>
+   		 			<div class="tradeContent">
+           		%{ int j=1;}%
+   		 			#{list offers, as:'ad'}
+   		 			    %{ mclass="offerMargin";
+   		 			      if(j==3) { 
+   		 			      	mclass="";
+   		 			      	j=0;
+   		 			      }
+   		 			      j++;
+   		 			     }%
+               			<div class="offerItem ${mclass}">
+                        <div class="offerImg">
+                           <img src="/public/img/rooms/${ad.image}"  class="img-polaroid">
+                        </div>
+                        <div class="salprice">From :${ad.startDate} </div>
+                        <div class="salprice">To: ${ad.endDate} </div>
+                        <div class="salprice">Price :${ad.pricePerNight} euro</div>
+                        <button type="button" data-toggle="modal" data-target="#myModal"><a class="moreOfBtn" href="${ad.id}" >More</a></button>
+                        <div class="saleMoreCell"><a class="btn moreBtn" data-toggle="modal" href="http://sheldonbrown.com/web_sample1.html" >More <i class="icon-circle-arrow-right"></i></a></div>
+                        </div>
+           			#{/list}
+       
+   				</div> 
+   				</div>
+   				<div class="pagination pagination-centered clearpag">
+                        <ul>
+                            %{ if(page==1) { }% 
+                            <li class="disabled"><a>Prev</a></li>
+                            %{ } else { }%
+                            <li><a id="prePage" href="${page-1};${firstPage};${lastPage}">Prev</a></li>
+                            %{ } }%
+                            
+                            %{
+                            
+                            	
+                            	for (int i=firstPage;i<=lastPage;i++){
+                            	
+                            }%
+                            
+                            %{ if(page==i) { }% 
+                            <li class="active"><a class="pagebtn" href="${i};${firstPage};${lastPage}">${i}</a></li>
+                            %{ } else { }%
+                            <li><a class="pagebtn" href="${i};${firstPage};${lastPage}">${i}</a></li>
+                            %{ } }%
+                            
+                            
+                            %{
+                             }
+                            }%
+                            
+                            %{ if(page==pagesCount) { }% 
+                            <li class="disabled"><a>Next</a></li>
+                            %{ } else { }%
+                            <li><a id="nextPage" href="${page+1};${firstPage};${lastPage}" >Next</a></li>
+                            %{ } }%
+                            
+                        
+                            
+                        </ul>
+                    </div>
+                    
+				#{/else}
+				
+				
+	<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div id="modalResults" class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+<script type="text/javascript" charset="${_response_encoding}">
+
+$(document).ready(function() {
+	
+// Support for AJAX loaded modal window.
+// Focuses on first input textbox after it loads the window.
+$('[data-toggle="modal"]').click(function(e) {
+	e.preventDefault();
+	var url = $(this).attr('href');
+	if (url.indexOf('#') == 0) {
+		$(url).modal('open');
+	} else {
+		$.get(url, function(data) {
+			$('<div class="modal hide fade">' + data + '</div>').modal();
+		}).success(function() { $('input:text:visible:first').focus(); });
+	}
+});
+	
+});
+</script>
+

@@ -1,0 +1,70 @@
+#{ifnot offers }
+    			<p>
+      			  No Offers Found
+    			</p>
+			   #{/ifnot}
+				#{else}
+                           <table class="table table-hover customSearchTable">
+                            <caption> About ${pagesCount*10} Search Result found </caption>
+           		
+           		
+           		%{ int j=1;}%
+   		 			#{list offers, as:'ad'}
+   		 			    %{ mclass="offerMargin";
+   		 			      if(j==3) { 
+   		 			      	mclass="";
+   		 			      	j=0;
+   		 			      }
+   		 			      j++;
+   		 			     }%
+               			<div class="offerItem ${mclass}">
+                        <div class="offerImg">
+                           <img src="/public/img/rooms/${ad.image}"  class="img-polaroid">
+                        </div>
+                        <div class="salName">${ad.startDate} </div>
+                        <div class="salprice">${ad.endDate} </div>
+                        <div class="salprice">${ad.pricePerNight} euro</div>
+                        <div class="saleMoreCell"><a class="btn moreBtn" href="/rentoffer/viewOffer/${ad.id}" >More <i class="icon-circle-arrow-right"></i></a></div>
+                        </div>
+           			#{/list}
+       
+   				</table> 
+   				
+   				<div class="pagination pagination-centered">
+                        <ul>
+                            %{ if(page==1) { }% 
+                            <li class="disabled"><a>Prev</a></li>
+                            %{ } else { }%
+                            <li><a id="prePage" href="${page-1};${firstPage};${lastPage}">Prev</a></li>
+                            %{ } }%
+                            
+                            %{
+                            
+                            	
+                            	for (int i=firstPage;i<=lastPage;i++){
+                            	
+                            }%
+                            
+                            %{ if(page==i) { }% 
+                            <li class="active"><a class="pagebtn" href="${i};${firstPage};${lastPage}">${i}</a></li>
+                            %{ } else { }%
+                            <li><a class="pagebtn" href="${i};${firstPage};${lastPage}">${i}</a></li>
+                            %{ } }%
+                            
+                            
+                            %{
+                             }
+                            }%
+                            
+                            %{ if(page==pagesCount) { }% 
+                            <li class="disabled"><a>Next</a></li>
+                            %{ } else { }%
+                            <li><a id="nextPage" href="${page+1};${firstPage};${lastPage}" >Next</a></li>
+                            %{ } }%
+                            
+                        
+                            
+                        </ul>
+                    </div>
+                    
+				#{/else}

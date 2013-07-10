@@ -42,7 +42,7 @@
         
         //$('#size').val() 
         var listAction = #{jsAction @list(':search',':category', ':size', ':page',':firstPage',':lastPage',':sortBy') /} 
-        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: sessvars.size,
+        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: 9,
         	page: sessvars.page
         	, firstPage: sessvars.firstPage, lastPage: sessvars.lastPage, sortBy: sessvars.sortBy}), function() {
            

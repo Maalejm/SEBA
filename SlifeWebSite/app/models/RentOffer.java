@@ -47,7 +47,10 @@ public class RentOffer extends Model {
     public Student IsRentedBy;
     
     
-    
+
+
+
+
   
    
     

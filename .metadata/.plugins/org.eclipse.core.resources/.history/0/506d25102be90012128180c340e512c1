@@ -1,0 +1,260 @@
+#{extends 'mainLayout.html' /}
+
+<script type="text/javascript" charset="${_response_encoding}">
+
+    
+    var search = function() {
+    	
+    	
+    	if($('.active .catNav').attr('href') != undefined)
+    		$('#category').val($('.active .catNav').attr('href').split("/")[2])
+        loadData($('#sortBy').val(),$('#search').val(),$('#category').val(),10)
+        
+    }
+    
+    var loadData=function(sortBy,search,category,size){
+    	
+    	if($('#result').length==0){
+    		
+    		var loadSearch = #{jsAction @search() /}
+    		
+    		
+    		$('#pageMainContent').load(loadSearch(), function() {
+               
+    			load(sortBy,search,category,size)
+            })
+    	}else{
+    		
+    		load(sortBy,search,category,size)
+    		
+    	}
+    	
+    	
+    }
+    
+    
+    var load=function(sortBy,search,category,size){
+    	
+    	sessvars.search = search
+        sessvars.category = category
+        sessvars.sortBy = sortBy
+        sessvars.size =size
+        
+        //$('#size').val() 
+        var listAction = #{jsAction @list(':search',':category', ':size', ':page',':firstPage',':lastPage',':sortBy') /} 
+        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: 10,
+        	page: sessvars.page
+        	, firstPage: sessvars.firstPage, lastPage: sessvars.lastPage, sortBy: sessvars.sortBy}), function() {
+           
+        	
+            
+        })
+    	
+    	
+    }
+    
+var loadNewOffer=function(){
+    	
+     var newOfferAction = #{jsAction @newOffer() /} 
+        $('#pageMainContent').load(newOfferAction(), function() {
+        	updateBreadCrumb("Create New Offer","/saleOffer/newOffer")
+           
+        })
+    	
+    }
+    
+ var updateBreadCrumb=function(newItem){
+	 
+	 if($(".breadcrumb").children().length==2){
+		 $(".breadcrumb li:last-child").removeClass("active")
+		  
+		 
+	 }else{
+		 $(".breadcrumb li:last-child").remove();
+		 
+		 
+	 }
+	 
+	 $(".breadcrumb").append("<li class='active'><span class='divider'>/</span> "+newItem+"</li>")
+	 
+ }
+    
+ 
+</script>
+
+<div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        
+                         #{list cats, as:'cat'}
+                         <li
+                         %{ if(id.equals(cat.id.toString())) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/saleOffer/${cat.id}">${cat.name}</a></li>
+                        #{/list} 
+                        
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                     %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/saleOffer/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list} 
+                        
+                   
+					<div>
+                      
+                    
+                    </div>
+                    <!--Sidebar content-->
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li class="active"><a href="/saleOffer">Trade</a></li>
+                    </ul>
+                     %{ if(logedIn) {}%
+                    <div class="btn-group">
+                        <button class="btn"><a href="/saleOffer/myOffers">List My Offer</a></button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn"><a href="/saleOffer/mySales">List My Sales</a></button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn"><a id="newOfferBtn" href="/saleOffer/newOffer">Create Offer</a></button>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn"><a href="/saleOffer/myCartes">My Cart</a></button>
+                    </div>
+                    %{ } }%
+                   
+                    <div id="pageMainContent">
+                     #{doLayout /}
+                    </div>                                  
+                    
+                    <!--Body content-->
+                </div>
+            </div>
+        </div>
+        
+   <script type="text/javascript" charset="${_response_encoding}">
+
+    // Rebuild state
+    
+    $('#search').val(sessvars.search)    
+    //if(sessvars.page == undefined) {
+        sessvars.page = 1
+    //}
+    
+    //if(sessvars.firstPage == undefined) {
+        sessvars.firstPage = 1
+    //}
+    
+    //if(sessvars.lastPage == undefined) {
+        sessvars.lastPage = 10
+    //}
+    
+    sessvars.sortBy = 1
+    // Search function
+ 
+    
+    // Events handler
+    $('#submit').click(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    $('#search').keyup(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    $('#category').change(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    $('#sortBy').change(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    
+    
+    
+    $('#newOfferBtn').live('click', function(e) {
+
+        e.preventDefault()
+        loadNewOffer()        
+    })
+    
+    
+    
+    $('#nextPage').live('click', function(e) {
+
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('#prePage').live('click', function(e) {
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('.pagebtn').live('click', function(e) {
+        
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+    	
+    	
+        e.preventDefault()
+        search()        
+    })
+    
+    
+    $('.catNav').live('click', function(e) {
+        
+    	category=$(this).attr('href').split("/")[2]
+    	
+    	
+    	$('#category').val(category)
+    	
+    	sessvars.page =1
+        sessvars.firstPage=1
+        sessvars.lastPage=10
+        $('#search').val("") 
+        $('.catNav').parent().removeClass('active');
+        $(this).parent().addClass('active');
+    	e.preventDefault()
+       
+       loadData(1,"",category,10)       
+    })
+    
+   
+   
+</script>            
+        

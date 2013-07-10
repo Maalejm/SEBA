@@ -85,7 +85,7 @@
         	<div align="left">Date of Birth *</div>
         </label>
         <div class="controls">      
-			<input class="input-xlarge" type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" value="${flash.dateOfBirth}"/> 
+			<input class="input-xlarge" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" value="${flash.dateOfBirth}"/> 
             #{ifError 'dateOfBirth'}<span class="error">#{error 'dateOfBirth' /}</span>#{/ifError}   				 			 		
         </div>
 	</div>

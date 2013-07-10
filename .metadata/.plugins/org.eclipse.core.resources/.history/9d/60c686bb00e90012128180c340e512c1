@@ -1,0 +1,231 @@
+#{extends 'mainLayout.html' /}
+#{set title:'RentOffers List' /}
+
+
+
+
+<div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span2">
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        
+                        #{list cats, as:'cat'}
+                         <li
+                         %{ if(id.equals(cat.id.toString())) { }%
+                          class="active"
+                         %{ } }%
+                         ><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></li>
+                        #{/list}
+                        
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    %{ int i=0;}%
+                    #{list cats, as:'cat'}
+                       %{ String fsize=fonts[i];}%
+                       <span style="font-size:${fsize}px;"><a class="catNav" href="/rentoffer/${cat.id}">${cat.name}</a></span>
+                      %{ i++;}% 
+                    #{/list}
+                        
+                   
+					<div>
+                      
+                    
+                    </div>
+                   
+                </div>
+                <div class="span10">
+                    <ul class="breadcrumb">
+                        <li><a href="/">Home</a> <span class="divider">/</span></li>
+                        <li class="active">Rent Offer</li>
+                    </ul>
+                    
+                    <div class="btn-group">
+                        
+                        <button class="btn" >List my renting offers</button>
+            			
+            			
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn"><i class="icon-plus"></i><a href="/rentoffer/newOffer"> Create new renting offer </a></button>
+                    </div>
+                    
+
+                    
+                    %{ if (success==1) {  }%
+                    <div class="success"> Your Offer successfully created</div>
+                    %{}}%
+                    <div class="span10 searchForm">
+                        
+                      <!--       <fieldset>
+                                
+                                <input name="search" class="span7" type="text" id="search"  placeholder="Search Rent Offer" >
+                                    <select id="category" class="span3">
+                                        <option value="0">All</option>
+                                       
+                                        #{list cats, as:'cat'}
+                                        <option value="${cat.id}">${cat.name}</option>
+                                        #{/list}
+                                    </select>
+                                    
+                                    <button type="submit" class="btn btn-primary"> <i class="icon-search icon-white"></i></button>
+                           </fieldset> -->
+                      		<table  class="rentoffers-serach-form">
+       							 <tr>
+         						   <td>From</td>
+          							<td><input type="date"/></td>
+           							<td>Until</td>
+            						<td><input type="date"></td>
+           							<td><input type="checkbox"></td>
+           							<td>+/- 3 days</td>
+           							 <td><input type="submit" class="btn btn-success" value="Search" name="searchOffer"/></td>
+      						  </tr>
+   						 </table>
+                    </div>
+                    
+                    <div  id="result">
+                    
+                        
+				
+
+                        
+           </div>
+                    
+                                                            
+                    
+                 
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+<script type="text/javascript" charset="${_response_encoding}">
+
+    // Rebuild state
+    
+    $('#search').val(sessvars.search)    
+    //if(sessvars.page == undefined) {
+        sessvars.page = 1
+    //}
+    
+    //if(sessvars.firstPage == undefined) {
+        sessvars.firstPage = 1
+    //}
+    
+    //if(sessvars.lastPage == undefined) {
+        sessvars.lastPage = 10
+    //}
+    
+    
+    // Search function
+    var search = function() {
+    	if($('.active .catNav').attr('href') != undefined)
+    		$('#category').val($('.active .catNav').attr('href').split("/")[2])
+        loadData($('#search').val(),$('#category').val(),10)
+        
+    }
+    
+    var loadData=function(search,category,size){
+    	
+    	
+    	sessvars.search = search
+        sessvars.category = category
+        sessvars.size =size //$('#size').val() 
+        var listAction = #{jsAction @listOf(':search',':category', ':size', ':page',':firstPage',':lastPage') /} 
+        $('#result').load(listAction({search: sessvars.search,category :sessvars.category , size: sessvars.size,
+        	page: sessvars.page
+        	, firstPage: sessvars.firstPage, lastPage: sessvars.lastPage}), function() {
+           
+           
+        })
+    	
+    }
+    
+    // Events handler
+    $('#submit').click(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    $('#search').keyup(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    $('#category').change(function() {
+        sessvars.page = 1
+        
+        search()
+    })
+    
+    
+    $('#nextPage').live('click', function(e) {
+
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('#prePage').live('click', function(e) {
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+
+        e.preventDefault()
+        search()        
+    })
+    
+    $('.pagebtn').live('click', function(e) {
+        
+    	pageinfo= $(this).attr('href').split(';');
+    	sessvars.page =pageinfo[0]
+        sessvars.firstPage=pageinfo[1]
+        sessvars.lastPage=pageinfo[2]
+        e.preventDefault()
+        search()        
+    })
+    
+    
+    $('.catNav').live('click', function(e) {
+        
+    	category=$(this).attr('href').split("/")[2]
+    	
+    	
+    	$('#category').val(category)
+    	
+    	sessvars.page =1
+        sessvars.firstPage=1
+        sessvars.lastPage=10
+        $('#search').val("") 
+        $('.catNav').parent().removeClass('active');
+        $(this).parent().addClass('active');
+    	e.preventDefault()
+    	
+       loadData("",category,10)       
+    })
+    
+    // Init
+    if(sessvars.search != undefined) {
+        search()
+        
+    }
+   
+</script>
+
+
+
+      

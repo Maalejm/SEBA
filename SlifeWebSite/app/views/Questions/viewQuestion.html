@@ -40,16 +40,16 @@
                         <li class="active">Question Details</li>
                     </ul>
                     
-                                     
+                          %{ if(logedIn) { }%               
                      <div class="btn-group">
                         <button class="btn"><a href="/questions/newQuestion">Create New Question</a></button>
                     </div>
                   
                      <div class="btn-group">
-                        <button class="btn"><a href="/questions/newAnswer">Create New Answer</a></button>
+                        <button class="btn"><a href="/questions/newAnswer/${question.id}">Create New Answer</a></button>
                     </div>
                   
-                    
+                       %{ }}%   
                      <fieldset>
                             <legend>Question Details</legend>
                                                       

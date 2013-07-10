@@ -67,8 +67,8 @@ public class Questions  extends Application {
 	    	fonts.add(String.valueOf(x));
 	     	  
 	    }
-	       
-	    render(questions,cats,fonts,min,max,success,id);
+	    boolean logedIn=Application.checkLogin();
+	    render(questions,cats,fonts,min,max,success,id,logedIn);
 	
 	}
 	
@@ -89,12 +89,12 @@ public class Questions  extends Application {
 	     	   fonts.add(String.valueOf(x));
 	     	  
 	     	}
-	        
-		 render(fonts,min,max,cats);
+	        boolean logedIn=Application.checkLogin();
+		 render(fonts,min,max,cats,logedIn);
 	
 	 }
 		 
-	 public static void newAnswer( ){
+	 public static void newAnswer( int id){
 		 
 		 EntityManager entityManager = play.db.jpa.JPA.em();
 		 List<BigInteger> bCounts = entityManager.createNativeQuery("select count(*) as maxCount from answer as a group by question_id order by maxCount").getResultList();
@@ -108,7 +108,8 @@ public class Questions  extends Application {
 	     	   fonts.add(String.valueOf(x));
 	     	   
 	        }
-		render(fonts,min,max);
+	        boolean logedIn=Application.checkLogin();
+		render(fonts,min,max,logedIn, id);
 		 
 	 
 	 }
@@ -133,8 +134,8 @@ public class Questions  extends Application {
 	     	}
 	        List<Answer> answers = null;
 			answers = Answer.find(" question_id=?1 order by id desc",question.id).fetch();
-		       
-		 render(question,fonts,min,max,cats,answers);	
+			boolean logedIn=Application.checkLogin();
+		 render(question,fonts,min,max,cats,answers,logedIn);	
 	
 	}
 	 
@@ -142,7 +143,8 @@ public class Questions  extends Application {
 	 public static void viewAnswer(String id){
 		 Answer answer= Answer.findById(Long.parseLong(id));
 		 Question question= Question.findById(answer.question.id); 
-		 render(answer,question);
+		 boolean logedIn=Application.checkLogin();
+		 render(answer,question,logedIn);
 	 }
 	 
 
@@ -170,7 +172,7 @@ public class Questions  extends Application {
 		//create question_id 
 	
 		
-		 
+		
 		 answer.save();
 		
 		 
@@ -205,6 +207,7 @@ public class Questions  extends Application {
 	     	}
 	        
 	        int pagesCount=0;
+	        int questionCount=0;
 
 	        page = page != null ? page : 1;
 	        if(search.trim().length() == 0) {
@@ -222,6 +225,7 @@ public class Questions  extends Application {
 	        	}
 	            
 	            Long l2=(l/10);
+	            questionCount=Integer.valueOf(l.intValue());
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
 	            
@@ -237,6 +241,7 @@ public class Questions  extends Application {
 	             }
 	            
 	            Long l2=(l/10);
+	            questionCount=Integer.valueOf(l.intValue());
 	            if ((l%10)>0) l2=(long) (Math.floor(l2)+1);
 	            pagesCount=Integer.valueOf(l2.intValue());
 	            
@@ -261,8 +266,8 @@ public class Questions  extends Application {
 	        
 	        if(lastPage>pagesCount)
 	        	lastPage=pagesCount;
-	       
-	        render(questions, search, size, page,pagesCount,firstPage,lastPage,cats,fonts);
+	        boolean logedIn=Application.checkLogin();
+	        render(questions, search, size, page,pagesCount,firstPage,lastPage,cats,fonts,logedIn,questionCount);
 	    }
 	  	  
   	}
