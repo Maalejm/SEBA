@@ -9,12 +9,14 @@
 
 
 #{form @registrationFinish()}
-
-    #{if flash.error}
+ 
+ 
+ #{if flash.error}
         <p class="error">
             &{flash.error}
         </p>
     #{/if}
+   
     #{if flash.success}
         <p class="success"> &{flash.success}
         </p>
@@ -58,8 +60,8 @@
         </label>             
     	<div class="controls">
       	<select name="university" class="input-xlarge" id="university">
-        	<option value="1">Technical University Munich</option>
-        	<option value="1">Ludwig Maximilian University of Munich</option>
+        	<option value="Technical University Munich">Technical University Munich</option>
+        	<option value="Ludwig Maximilian University of Munich">Ludwig Maximilian University of Munich</option>
       	</select>    
 		</div>
 	</div>           
@@ -146,10 +148,6 @@
     </div>
 
 
-	<!-- Recaptcha -->
-	<div class="control-group">
-		#{ugot.recaptcha theme:"clean", tabindex:"2"/}
-	</div>
 
 
 
@@ -160,9 +158,19 @@
      
           
           
-      
+  
   
     
 #{/form}
 
+
+  
+
+
+
 </div>
+
+
+
+
+

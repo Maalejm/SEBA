@@ -28,7 +28,7 @@ public class Registration extends TransportUriGuarantee {
 	/**
 	 * Do the validation of the registration screen
 	 */
-	public static void registrationFinish(@Recaptcha String captcha,
+	public static void registrationFinish(
 			
 			 
 			@Required String firstName,
